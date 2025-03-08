@@ -12,6 +12,21 @@
 </head>
 
 <body>
+    <button id="send">Send</button>
+
+    <script defer>
+        $(document).ready(function () {
+            $("#send").on("click", function () {
+                $.ajax({
+                    url: "../server/index.php",
+                    method: "GET",
+                })
+                    .done(response => { console.log(response) })
+                    .fail((xhr, status, err) => { console.error("Error: ", err) })
+                    .always()
+            })
+        })
+    </script>
 </body>
 
 </html>
