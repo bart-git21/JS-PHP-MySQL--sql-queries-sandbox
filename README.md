@@ -6,7 +6,7 @@ Application for testing the sql queries.
 ```
 
 # Technologies Used
-Backend: PHP, MySQL.
+Backend: PHP, PDO, MySQL.
 Frontentd: Javascript, jQuery.
 Authentication: no.
 Data format: JSON.
