@@ -19,9 +19,13 @@
 </head>
 
 <body>
-    <h1>Users queries list</h1>
-    <button id="usersQueries">Show</button>
-    <div id="usersQueriesList"></div>
+    <main>
+        <div class="container-sm">
+            <h1>Users queries list</h1>
+            <button id="usersQueries">Show</button>
+            <div id="usersQueriesList"></div>
+        </div>
+    </main>
 
     <script defer>
         class TableView {
