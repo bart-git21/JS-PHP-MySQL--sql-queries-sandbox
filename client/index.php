@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <button id="send">Send</button>
+    <button id="queries">Queries list</button>
     <div id="board">
         <h1>Users queries list</h1>
         <div id="usersQueriesList"></div>
@@ -27,7 +27,7 @@
 
     <script defer>
         $(document).ready(function () {
-            $("#send").on("click", function () {
+            $("#queries").on("click", function () {
                 $.ajax({
                     url: "../server/index.php",
                     method: "GET",
