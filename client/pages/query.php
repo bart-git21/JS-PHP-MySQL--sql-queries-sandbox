@@ -89,7 +89,6 @@
                         console.log(response.userResult);
                         const createTable = new TableController(new TableView(), new TableModel(response.userResult));
                         createTable.display();
-                        return response.userResult;
                     })
                     .fail()
                     .always()
@@ -110,7 +109,6 @@
             }
         }
         $(document).ready(function () {
-            let requestResult = "";
             $.ajax({
                 url: "../../server/queries.php",
                 method: "GET",
@@ -118,13 +116,12 @@
                 .done(response => {
                     const queriesSelect = new selectController(new selectView(), new selectModel(response));
                     queriesSelect.apendOptions();
-                    requestResult = queriesSelect.change();
+                    queriesSelect.change();
                 })
                 .fail()
                 .always()
             $("#requestQueryBtn").on("click", function () {
-                const createTable = new TableController(new TableView(), new TableModel(requestResult));
-                createTable.display();
+                $("#queriesSelect").trigger("change");
             })
         })
     </script>
