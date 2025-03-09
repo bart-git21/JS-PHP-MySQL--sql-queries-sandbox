@@ -31,7 +31,7 @@
     <main class="container">
         <h1 class="text-center">Users queries list</h1>
         <button id="usersQueries">Show</button>
-        <div id="usersQueriesList"></div>
+        <div id="table"></div>
     </main>
 
     <script defer type="module">

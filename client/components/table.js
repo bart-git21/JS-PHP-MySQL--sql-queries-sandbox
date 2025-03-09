@@ -34,7 +34,7 @@ class TableView {
   }
   display(initTitles, data) {
     const title = initTitles ? initTitles : Object.keys(data[0]);
-    $("#usersQueriesList").html(this.table(title));
+    $("#table").html(this.table(title));
     for (let item of data) {
       const requiredData = initTitles
         ? Object.assign(
