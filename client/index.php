@@ -19,49 +19,28 @@
 </head>
 
 <body>
-    <button id="usersQueries">Queries list</button>
-    <div id="board">
-        <h1>Users queries list</h1>
-        <div id="usersQueriesList"></div>
-    </div>
+    <h1>Users queries list</h1>
+    <button id="usersQueries">Show</button>
+    <div id="usersQueriesList"></div>
 
     <script defer>
         class TableView {
-            constructor(data) {
-                this.data = data;
-            }
             displayTable() {
                 return `
-        <table class="table table-sm table-hover table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Пользователь</th>
-                    <th scope="col">Название</th>
-                    <th scope="col">Текст запроса</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">${this.data[0].login}</th>
-                    <td>${this.data[0].name}</td>
-                    <td>${this.data[0].query}</td>
-                </tr>
-                <tr>
-                    <th scope="row">${this.data[1].login}</th>
-                    <td>${this.data[1].name}</td>
-                    <td>${this.data[1].query}</td>
-                </tr>
-                <tr>
-                    <th scope="row">${this.data[2].login}</th>
-                    <td>${this.data[2].name}</td>
-                    <td>${this.data[2].query}</td>
-                </tr>
-            </tbody>
-        </table>
-                
+                    <table class="table table-sm table-hover table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Пользователь</th>
+                                <th scope="col">Название</th>
+                                <th scope="col">Текст запроса</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
                 `
             }
         }
+
         $(document).ready(function () {
             $("#usersQueries").on("click", function () {
                 $.ajax({
@@ -75,7 +54,7 @@
                             e.query = decodeURI(encodeURI(e.query));
                             return e;
                         })
-                        const queriesTable = new TableView(data);
+                        const queriesTable = new TableView();
                         $("#usersQueriesList").html(queriesTable.displayTable());
                     })
                     .fail((xhr, status, err) => { console.error("Error: ", err) })
