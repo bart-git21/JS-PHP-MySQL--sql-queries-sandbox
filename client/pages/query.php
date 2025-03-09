@@ -63,10 +63,18 @@
             }
         }
         class selectView {
+            constructor() {
+                this.select = $("#queriesSelect");
+            }
             option({ id, name }) {
                 return `
                     <option value="${id}">${name}</option>
                 `
+            }
+            changeListener() {
+                this.select.on("change", function(event) {
+                    return console.log(event.target.value);
+                })
             }
         }
         class selectController {
@@ -77,6 +85,9 @@
             apendOptions() {
                 this.model.list.forEach(elem => $("#queriesSelect").append(this.view.option(elem)));
             }
+            startListeners() {
+                this.view.changeListener();
+            }
         }
         $(document).ready(function () {
             $.ajax({
@@ -86,6 +97,7 @@
                 .done(response => {
                     const queriesSelect = new selectController(new selectView(), new selectModel(response));
                     queriesSelect.apendOptions();
+                    queriesSelect.startListeners();
                 })
                 .fail()
                 .always()
