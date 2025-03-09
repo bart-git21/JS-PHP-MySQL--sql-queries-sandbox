@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <button id="queries">Queries list</button>
+    <button id="usersQueries">Queries list</button>
     <div id="board">
         <h1>Users queries list</h1>
         <div id="usersQueriesList"></div>
@@ -63,7 +63,7 @@
             }
         }
         $(document).ready(function () {
-            $("#queries").on("click", function () {
+            $("#usersQueries").on("click", function () {
                 $.ajax({
                     url: "../server/users.php",
                     method: "GET",
