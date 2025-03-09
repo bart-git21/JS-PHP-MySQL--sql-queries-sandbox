@@ -42,34 +42,40 @@
         }
         class TableView {
             table([...args]) {
+                let html = "";
+                for (let col of args) {
+                    html += `<th scope="col">${col}</th>`
+                }
                 return `
                     <table class="table table-sm table-hover table-bordered">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">${args[0]}</th>
-                                <th scope="col">${args[1]}</th>
-                                <th scope="col">${args[2]}</th>
+                                ${html}
                             </tr>
                         </thead>
                         <tbody id="tableBody"></tbody>
                     </table>
                 `
             }
-            row({ login, name, query }) {
+            row(object) {
+                let html = "";
+                for (let key in object) {
+                    (key === "login" || key === "id")
+                        ? html += `<th scope="row">${object[key]}</th>`
+                        : html += `<td>${object[key]}</td>`
+                }
                 return `
                 <tr>
-                    <th scope="row">${login}</th>
-                    <td>${name}</td>
-                    <td>${query}</td>
+                    ${html}
                 </tr>`
             }
             display(initTitles, data) {
                 const title = initTitles ? initTitles : Object.keys(data[0]);
-                console.log(title);
                 $("#usersQueriesList").html(this.table(title));
-                data.forEach(e => {
-                    $("#tableBody").append(this.row(e))
-                })
+                for (let item of data) {
+                    const requiredData = initTitles ? Object.assign({}, { "login": item.login, "name": item.name, "query": item.query }) : item;
+                    $("#tableBody").append(this.row(requiredData))
+                }
             }
         }
         class TableController {
