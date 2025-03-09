@@ -72,8 +72,17 @@
                 `
             }
             changeListener() {
-                this.select.on("change", function(event) {
-                    return console.log(event.target.value);
+                this.select.on("change", function (event) {
+                    const queryId = event.target.value;
+                    $.ajax({
+                        url: "../../server/queries.php",
+                        method: "POST",
+                        data: JSON.stringify({ id: queryId }),
+                        headers: { "contentType": "application/json" },
+                    })
+                    .done(response => console.log(response.query))
+                    .fail()
+                    .always()
                 })
             }
         }
