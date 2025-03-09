@@ -35,6 +35,11 @@
     </main>
 
     <script defer>
+        class TableModel {
+            constructor(list) {
+                this.list = list;
+            }
+        }
         class TableView {
             table() {
                 return `
@@ -50,12 +55,12 @@
                     </table>
                 `
             }
-            row(item) {
+            row({ login, name, query }) {
                 return `
                 <tr>
-                    <th scope="row">${item.login}</th>
-                    <td>${item.name}</td>
-                    <td>${item.query}</td>
+                    <th scope="row">${login}</th>
+                    <td>${name}</td>
+                    <td>${query}</td>
                 </tr>`
             }
             display(data) {
@@ -63,6 +68,15 @@
                 data.forEach(e => {
                     $("#tableBody").append(this.row(e))
                 })
+            }
+        }
+        class TableController {
+            constructor(view, model) {
+                this.view = view;
+                this.model = model;
+            }
+            display() {
+                this.view.display(this.model.list);
             }
         }
 
@@ -73,14 +87,13 @@
                     method: "GET",
                 })
                     .done(response => {
-                        console.log(response);
                         const data = response.map(e => {
                             e.name = decodeURI(encodeURI(e.name));
                             e.query = decodeURI(encodeURI(e.query));
                             return e;
                         })
-                        const queriesTable = new TableView();
-                        queriesTable.display(data);
+                        const queriesTable = new TableController(new TableView(), new TableModel(data));
+                        queriesTable.display();
                     })
                     .fail((xhr, status, err) => { console.error("Error: ", err) })
                     .always()
