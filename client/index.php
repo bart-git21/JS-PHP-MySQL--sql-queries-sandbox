@@ -19,12 +19,10 @@
 </head>
 
 <body>
-    <main>
-        <div class="container-sm">
-            <h1>Users queries list</h1>
-            <button id="usersQueries">Show</button>
-            <div id="usersQueriesList"></div>
-        </div>
+    <main class="container-sm">
+        <h1 class="text-center">Users queries list</h1>
+        <button id="usersQueries">Show</button>
+        <div id="usersQueriesList"></div>
     </main>
 
     <script defer>
