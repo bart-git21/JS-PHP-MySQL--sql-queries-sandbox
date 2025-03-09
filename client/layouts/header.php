@@ -19,7 +19,7 @@
     </div>
     <div class="d-flex align-items-center">
         <span class="flex-shrink-0 mr-2">Sign in</span>
-            <select class="custom-select" id="queriesSelect">
+            <select class="custom-select" id="userSelect">
                 <option selected disabled>Пользователь</option>
                 <option value="1">Admin</option>
                 <option value="2">Item1</option>
@@ -43,7 +43,7 @@
             })
         }
     })
-    $("#queriesSelect").on("change", function () {
+    $("#userSelect").on("change", function () {
         $.ajax({
             url: "/server/login.php",
             method: "POST",
