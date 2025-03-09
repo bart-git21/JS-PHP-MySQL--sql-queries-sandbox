@@ -57,7 +57,7 @@
     </main>
 
     <script defer type="module">
-        import {TableModel, TableView, TableController} from "./../components/table.js";
+        import { TableModel, TableView, TableController } from "./../components/table.js";
 
         class selectModel {
             constructor(list) {
@@ -73,7 +73,7 @@
                     <option value="${id}">${name}</option>
                 `
             }
-            changeListener() {
+            fetchQueryResult() {
                 this.select.on("change", function (event) {
                     const queryId = event.target.value;
                     $.ajax({
@@ -89,6 +89,7 @@
                         console.log(response.userResult);
                         const createTable = new TableController(new TableView(), new TableModel(response.userResult));
                         createTable.display();
+                        return response.userResult;
                     })
                     .fail()
                     .always()
@@ -104,11 +105,12 @@
                 this.model.list.forEach(elem => $("#queriesSelect").append(this.view.option(elem)));
                 $("#queriesSelect").val('-1');
             }
-            startListeners() {
-                this.view.changeListener();
+            change() {
+                this.view.fetchQueryResult();
             }
         }
         $(document).ready(function () {
+            let requestResult = "";
             $.ajax({
                 url: "../../server/queries.php",
                 method: "GET",
@@ -116,10 +118,14 @@
                 .done(response => {
                     const queriesSelect = new selectController(new selectView(), new selectModel(response));
                     queriesSelect.apendOptions();
-                    queriesSelect.startListeners();
+                    requestResult = queriesSelect.change();
                 })
                 .fail()
                 .always()
+            $("#requestQueryBtn").on("click", function () {
+                const createTable = new TableController(new TableView(), new TableModel(requestResult));
+                createTable.display();
+            })
         })
     </script>
 </body>
