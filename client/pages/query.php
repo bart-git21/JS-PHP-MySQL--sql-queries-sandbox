@@ -48,6 +48,15 @@
                 <button id="requestQueryBtn">Выполнить</button>
             </div>
         </div>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                Результат запроса
+            </div>
+            <div class="card-body">
+                <div id="queryResponse"></div>
+            </div>
+        </div>
     </main>
 </body>
 
