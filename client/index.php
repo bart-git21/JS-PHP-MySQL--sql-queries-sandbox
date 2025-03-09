@@ -41,14 +41,14 @@
             }
         }
         class TableView {
-            table() {
+            table([...args]) {
                 return `
                     <table class="table table-sm table-hover table-bordered">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Пользователь</th>
-                                <th scope="col">Название</th>
-                                <th scope="col">Текст запроса</th>
+                                <th scope="col">${args[0]}</th>
+                                <th scope="col">${args[1]}</th>
+                                <th scope="col">${args[2]}</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody"></tbody>
@@ -63,8 +63,10 @@
                     <td>${query}</td>
                 </tr>`
             }
-            display(data) {
-                $("#usersQueriesList").html(this.table());
+            display(initTitles, data) {
+                const title = initTitles ? initTitles : Object.keys(data[0]);
+                console.log(title);
+                $("#usersQueriesList").html(this.table(title));
                 data.forEach(e => {
                     $("#tableBody").append(this.row(e))
                 })
@@ -75,8 +77,8 @@
                 this.view = view;
                 this.model = model;
             }
-            display() {
-                this.view.display(this.model.list);
+            display(initTitles) {
+                this.view.display(initTitles, this.model.list);
             }
         }
 
@@ -93,7 +95,7 @@
                             return e;
                         })
                         const queriesTable = new TableController(new TableView(), new TableModel(data));
-                        queriesTable.display();
+                        queriesTable.display(["Пользователь", "Название", "Текст запроса"]);
                     })
                     .fail((xhr, status, err) => { console.error("Error: ", err) })
                     .always()
