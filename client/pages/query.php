@@ -62,6 +62,13 @@
                 this.list = list;
             }
         }
+        class selectView {
+            option({ id, name }) {
+                return `
+                    <option value="${id}">${name}</option>
+                `
+            }
+        }
         $(document).ready(function () {
             $.ajax({
                 url: "../../server/queries.php",
