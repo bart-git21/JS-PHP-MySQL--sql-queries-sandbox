@@ -45,7 +45,7 @@
     })
     $("#queriesSelect").on("change", function () {
         $.ajax({
-            url: "/server/user.php",
+            url: "/server/login.php",
             method: "POST",
             data: JSON.stringify({ userId: this.value, }),
             headers: { contentType: "application/json" },
