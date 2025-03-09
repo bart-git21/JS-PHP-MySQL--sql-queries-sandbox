@@ -21,7 +21,7 @@
 
 <script>
     const links = document.querySelectorAll(".nav-link");
-    const id = localStorage.getItem('activePage');
+    const id = localStorage.getItem('activePage') || 0;
     (id + 1) && links[id].classList.add("active");
     (id + 1) && links[id].setAttribute("aria-current", "page");
 
