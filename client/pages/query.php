@@ -25,6 +25,7 @@
 </head>
 
 <body>
+    <header><?php include "../layouts/header.php" ?></header>
 </body>
 
 </html>
