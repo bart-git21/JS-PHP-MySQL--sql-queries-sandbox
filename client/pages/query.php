@@ -58,6 +58,18 @@
             </div>
         </div>
     </main>
+
+    <script defer>
+        $(document).ready(function () {
+            $.ajax({
+                url: "../../server/queries.php",
+                method: "GET",
+            })
+                .done(response => console.log(response))
+                .fail()
+                .always()
+        })
+    </script>
 </body>
 
 </html>
