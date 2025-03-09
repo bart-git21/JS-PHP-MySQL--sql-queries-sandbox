@@ -65,10 +65,19 @@
         $(document).ready(function () {
             $("#queries").on("click", function () {
                 $.ajax({
-                    url: "../server/index.php",
+                    url: "../server/users.php",
                     method: "GET",
                 })
-                    .done(response => { console.log(response) })
+                    .done(response => {
+                        console.log(response);
+                        const data = response.map(e => {
+                            e.name = decodeURI(encodeURI(e.name));
+                            e.query = decodeURI(encodeURI(e.query));
+                            return e;
+                        })
+                        const queriesTable = new TableView(data);
+                        $("#usersQueriesList").html(queriesTable.displayTable());
+                    })
                     .fail((xhr, status, err) => { console.error("Error: ", err) })
                     .always()
             })
