@@ -74,7 +74,10 @@
                 url: "../../server/queries.php",
                 method: "GET",
             })
-                .done(response => console.log(response))
+                .done(response => {
+                    const queriesSelect = new selectController(new selectView(), new selectModel(response));
+                    queriesSelect.apendOptions();
+                })
                 .fail()
                 .always()
         })
