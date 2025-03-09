@@ -21,7 +21,6 @@
     $(".navbar").on("click", function(event) {
         event.preventDefault();
         if (event.target.classList.contains("nav-link")) {
-            console.log("nav-link");
             const links = document.querySelectorAll(".nav-link");
             links.forEach(e => {
                 e.classList.remove("active");
@@ -32,3 +31,17 @@
         }
     })
 </script>
+
+<style>
+    .nav-item {
+        border-bottom: 1px solid transparent;
+        transition: all 0.5s;
+    }
+    .nav-item:hover {
+        border-bottom: 1px solid black;
+        background-color: #aaa;
+    }
+    .nav-item:has(a.active) {
+        border-bottom: 1px solid black;
+    }
+</style>
