@@ -20,7 +20,7 @@
     <div class="d-flex align-items-center">
         <span class="flex-shrink-0 mr-2">Sign in</span>
         <select class="custom-select" id="userSelect">
-            <option selected disabled>Пользователь</option>
+            <option selected disabled value="0">Пользователь</option>
             <option value="1">Admin</option>
             <option value="2">Item1</option>
             <option value="3">Item2</option>
@@ -30,6 +30,8 @@
 
 <script>
     const links = document.querySelectorAll(".nav-link");
+    const user = localStorage.getItem('user') || 0;
+    $("#userSelect").val(user);
     const id = localStorage.getItem('activePage') || 0;
     (id + 1) && links[id].classList.add("active");
     (id + 1) && links[id].setAttribute("aria-current", "page");
@@ -52,7 +54,8 @@
         })
             .done(response => {
                 console.log(response);
-                location.reload();
+                localStorage.setItem("user", $("#userSelect").val());
+                // location.reload();
             })
             .fail((xhr, status, err) => { console.error("Error: ", err) })
             .always()
