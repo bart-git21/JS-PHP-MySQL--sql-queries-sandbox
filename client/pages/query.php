@@ -26,6 +26,29 @@
 
 <body>
     <header><?php include "../layouts/header.php" ?></header>
+    <main class="container">
+        <h1 class="text-center">Query sandbox</h1>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="queriesSelect">
+                        <option selected disabled>Выбор запроса</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">u</button>
+                    </div>
+                </div>
+                <div id="queryText">
+                    <div>Текст запроса (только чтение)</div>
+                </div>
+                <button id="requestQueryBtn">Выполнить</button>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
