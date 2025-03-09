@@ -13,6 +13,10 @@
 
 <body>
     <button id="send">Send</button>
+    <div id="board">
+        <h1>Users queries list</h1>
+        <div id="usersQueriesList"></div>
+    </div>
 
     <script defer>
         $(document).ready(function () {
