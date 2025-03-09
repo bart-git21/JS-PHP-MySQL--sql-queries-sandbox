@@ -69,6 +69,15 @@
                 `
             }
         }
+        class selectController {
+            constructor(view, model) {
+                this.view = view;
+                this.model = model;
+            }
+            apendOptions() {
+                this.model.list.forEach(elem => $("#queriesSelect").append(this.view.option(elem)));
+            }
+        }
         $(document).ready(function () {
             $.ajax({
                 url: "../../server/queries.php",
