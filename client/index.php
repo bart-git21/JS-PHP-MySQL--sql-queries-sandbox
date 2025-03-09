@@ -28,7 +28,7 @@
     <header>
         <?php include "layouts/header.php" ?>
     </header>
-    <main class="container-sm">
+    <main class="container">
         <h1 class="text-center">Users queries list</h1>
         <button id="usersQueries">Show</button>
         <div id="usersQueriesList"></div>
