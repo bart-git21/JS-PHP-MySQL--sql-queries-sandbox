@@ -27,7 +27,7 @@
 
     <script defer>
         class TableView {
-            displayTable() {
+            table() {
                 return `
                     <table class="table table-sm table-hover table-bordered">
                         <thead class="table-dark">
@@ -41,13 +41,19 @@
                     </table>
                 `
             }
-            addRow(item) {
+            row(item) {
                 return `
                 <tr>
                     <th scope="row">${item.login}</th>
                     <td>${item.name}</td>
                     <td>${item.query}</td>
                 </tr>`
+            }
+            display(data) {
+                $("#usersQueriesList").html(this.table());
+                data.forEach(e => {
+                    $("#tableBody").append(this.row(e))
+                })
             }
         }
 
@@ -65,10 +71,7 @@
                             return e;
                         })
                         const queriesTable = new TableView();
-                        $("#usersQueriesList").html(queriesTable.displayTable());
-                        data.forEach(e => {
-                            $("#tableBody").append(queriesTable.addRow(e))
-                        })
+                        queriesTable.display(data);
                     })
                     .fail((xhr, status, err) => { console.error("Error: ", err) })
                     .always()
