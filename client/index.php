@@ -26,6 +26,42 @@
     </div>
 
     <script defer>
+        class TableView {
+            constructor(data) {
+                this.data = data;
+            }
+            displayTable() {
+                return `
+        <table class="table table-sm table-hover table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Пользователь</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Текст запроса</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">${this.data[0].login}</th>
+                    <td>${this.data[0].name}</td>
+                    <td>${this.data[0].query}</td>
+                </tr>
+                <tr>
+                    <th scope="row">${this.data[1].login}</th>
+                    <td>${this.data[1].name}</td>
+                    <td>${this.data[1].query}</td>
+                </tr>
+                <tr>
+                    <th scope="row">${this.data[2].login}</th>
+                    <td>${this.data[2].name}</td>
+                    <td>${this.data[2].query}</td>
+                </tr>
+            </tbody>
+        </table>
+                
+                `
+            }
+        }
         $(document).ready(function () {
             $("#queries").on("click", function () {
                 $.ajax({
