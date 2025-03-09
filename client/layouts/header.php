@@ -19,7 +19,6 @@
 
 <script>
     $(".navbar").on("click", function(event) {
-        event.preventDefault();
         if (event.target.classList.contains("nav-link")) {
             const links = document.querySelectorAll(".nav-link");
             links.forEach(e => {
