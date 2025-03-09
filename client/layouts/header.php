@@ -19,12 +19,12 @@
     </div>
     <div class="d-flex align-items-center">
         <span class="flex-shrink-0 mr-2">Sign in</span>
-            <select class="custom-select" id="userSelect">
-                <option selected disabled>Пользователь</option>
-                <option value="1">Admin</option>
-                <option value="2">Item1</option>
-                <option value="3">Item2</option>
-            </select>
+        <select class="custom-select" id="userSelect">
+            <option selected disabled>Пользователь</option>
+            <option value="1">Admin</option>
+            <option value="2">Item1</option>
+            <option value="3">Item2</option>
+        </select>
     </div>
 </nav>
 
@@ -50,7 +50,10 @@
             data: JSON.stringify({ userId: this.value, }),
             headers: { contentType: "application/json" },
         })
-            .done(response => console.log(response))
+            .done(response => {
+                console.log(response);
+                location.reload();
+            })
             .fail((xhr, status, err) => { console.error("Error: ", err) })
             .always()
     })
