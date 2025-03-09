@@ -20,7 +20,8 @@
 <script>
     const links = document.querySelectorAll(".nav-link");
     const id = localStorage.getItem('activePage');
-    (id + 1) && links[id].classList.add("active").setAttribute("aria-current", "page");
+    (id + 1) && links[id].classList.add("active");
+    (id + 1) && links[id].setAttribute("aria-current", "page");
 
     $(".navbar").on("click", function(event) {
         if (event.target.classList.contains("nav-link")) {
