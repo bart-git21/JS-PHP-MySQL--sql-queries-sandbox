@@ -34,9 +34,6 @@
                 <div class="input-group mb-3">
                     <select class="custom-select" id="queriesSelect">
                         <option selected disabled>Выбор запроса</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
                     </select>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button">u</button>
@@ -60,6 +57,11 @@
     </main>
 
     <script defer>
+        class selectModel {
+            constructor(list) {
+                this.list = list;
+            }
+        }
         $(document).ready(function () {
             $.ajax({
                 url: "../../server/queries.php",
