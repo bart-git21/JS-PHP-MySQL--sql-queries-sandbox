@@ -18,15 +18,17 @@
 </nav>
 
 <script>
+    const links = document.querySelectorAll(".nav-link");
+    const id = localStorage.getItem('activePage');
+    (id + 1) && links[id].classList.add("active").setAttribute("aria-current", "page");
+
     $(".navbar").on("click", function(event) {
         if (event.target.classList.contains("nav-link")) {
-            const links = document.querySelectorAll(".nav-link");
-            links.forEach(e => {
+            links.forEach((e, i) => {
+                (e === event.target) && localStorage.setItem("activePage", i);
                 e.classList.remove("active");
                 e.removeAttribute("aria-current");
             })
-            event.target.classList.add("active");
-            event.target.setAttribute("aria-current", "page");
         }
     })
 </script>
