@@ -17,6 +17,15 @@
             </li>
         </ul>
     </div>
+    <div>
+        <span>Log in</span>
+        <select class="custom-select" id="queriesSelect">
+            <option selected disabled>Выбор пользователя</option>
+            <option value="1">Admin</option>
+            <option value="2">Item1</option>
+            <option value="3">Item2</option>
+        </select>
+    </div>
 </nav>
 
 <script>
