@@ -39,6 +39,14 @@
                     </table>
                 `
             }
+            addRow(item) {
+                return `
+                <tr>
+                    <th scope="row">${item.login}</th>
+                    <td>${item.name}</td>
+                    <td>${item.query}</td>
+                </tr>`
+            }
         }
 
         $(document).ready(function () {
@@ -56,6 +64,9 @@
                         })
                         const queriesTable = new TableView();
                         $("#usersQueriesList").html(queriesTable.displayTable());
+                        data.forEach(e => {
+                            $("#tableBody").append(queriesTable.addRow(e))
+                        })
                     })
                     .fail((xhr, status, err) => { console.error("Error: ", err) })
                     .always()
