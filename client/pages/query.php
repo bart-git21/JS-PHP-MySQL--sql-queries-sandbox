@@ -33,7 +33,7 @@
             <div class="card-body">
                 <div class="input-group mb-3">
                     <select class="custom-select" id="queriesSelect">
-                        <option selected disabled>Выбор запроса</option>
+                        <option selected disabled value="-1">Выбор запроса</option>
                     </select>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button">u</button>
@@ -102,6 +102,7 @@
             }
             apendOptions() {
                 this.model.list.forEach(elem => $("#queriesSelect").append(this.view.option(elem)));
+                $("#queriesSelect").val('-1');
             }
             startListeners() {
                 this.view.changeListener();
