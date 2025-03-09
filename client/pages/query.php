@@ -39,7 +39,7 @@
                         <button class="btn btn-outline-secondary" type="button">u</button>
                     </div>
                 </div>
-                <div id="queryText">
+                <div class="border mb-2" id="queryText">
                     <div>Текст запроса (только чтение)</div>
                 </div>
                 <button id="requestQueryBtn">Выполнить</button>
@@ -80,7 +80,12 @@
                         data: JSON.stringify({ id: queryId }),
                         headers: { "contentType": "application/json" },
                     })
-                    .done(response => console.log(response.query))
+                    .done(response => {
+                        $("#queryText").text(response.query);
+                    })
+                    .then(response => {
+                        console.log(response.userResult);
+                    })
                     .fail()
                     .always()
                 })
