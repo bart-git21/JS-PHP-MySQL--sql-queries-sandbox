@@ -51,12 +51,14 @@
                 Результат запроса
             </div>
             <div class="card-body">
-                <div id="queryResponse"></div>
+                <div id="table"></div>
             </div>
         </div>
     </main>
 
-    <script defer>
+    <script defer type="module">
+        import {TableModel, TableView, TableController} from "./../components/table.js";
+
         class selectModel {
             constructor(list) {
                 this.list = list;
@@ -85,6 +87,8 @@
                     })
                     .then(response => {
                         console.log(response.userResult);
+                        const createTable = new TableController(new TableView(), new TableModel(response.userResult));
+                        createTable.display();
                     })
                     .fail()
                     .always()
