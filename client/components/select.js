@@ -54,5 +54,14 @@ class selectController {
 
     this.view.addChangeListener(handleChangedSelect.bind(this));
   }
+  update(data) {
+    this.model.list.forEach((e) => {
+      if (e.id === data.id) {
+        e.name = data.name;
+        e.query = data.query;
+      }
+    });
+    this.store.queryText = data.query;
+  }
 }
 export { selectModel, selectView, selectController };
