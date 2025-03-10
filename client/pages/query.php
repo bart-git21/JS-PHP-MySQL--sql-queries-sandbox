@@ -37,7 +37,15 @@
                 <div class="border mb-2" id="queryText">
                     <div>Текст запроса (только чтение)</div>
                 </div>
-                <button id="requestQueryBtn">Выполнить</button>
+
+                <div>
+                    <!-- Button trigger modal -->
+                    <button type="button" id="modalBtn" data-toggle="modal" data-target="#myModal">
+                        Редактирование
+                    </button>
+                    <!-- Button trigger table controller -->
+                    <button id="requestQueryBtn">Выполнить</button>
+                </div>
             </div>
         </div>
 
@@ -50,6 +58,27 @@
             </div>
         </div>
     </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Редактирование</h5>
+                    <button type="button" class="close" id="closeModalBtn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script defer type="module">
         import { TableModel, TableView, TableController } from "./../components/table.js";
