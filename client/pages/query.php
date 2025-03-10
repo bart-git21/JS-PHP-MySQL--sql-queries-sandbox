@@ -107,7 +107,7 @@
                 createTable.display();
             })
 
-            // jQuery modal usage
+            // Bootstrap modal usage
             $('#myModal').on('shown.bs.modal', function (e) {
                 if (!Object.keys(queriesSelect.store).length) {
                     $('#myModal').modal('hide');
