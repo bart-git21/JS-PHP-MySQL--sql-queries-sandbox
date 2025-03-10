@@ -33,6 +33,18 @@ switch ($requestMethod) {
             "userResult" => $userResult
         ]);
         break;
+    case "PUT":
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
+        $stmt = $conn->prepare("UPDATE queries SET name = :name, query = :query WHERE id = :id");
+        $stmt->bindParam(":id", $data['id']);
+        $stmt->bindParam(":name", $data['name']);
+        $stmt->bindParam(":query", $data['query']);
+        $stmt->execute();
+
+        header("Content-Type: application/json");
+        echo json_encode(["success" => "query successfully updated"]);
+        break;
     default:
         break;
 }

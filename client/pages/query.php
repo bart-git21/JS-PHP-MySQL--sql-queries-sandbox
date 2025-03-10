@@ -123,7 +123,24 @@
                 modal.find('#modalQueryText').val("");
             })
             $("#saveModalBtn").on("click", function () {
-                $('#myModal').modal('hide');
+                const editedQuery = {
+                    id: queriesSelect.store.queryId,
+                    name: $("#modalQueryName").val(),
+                    query: $("#modalQueryText").val()
+                };
+                $.ajax({
+                    url: "../../server/queries.php",
+                    method: "PUT",
+                    data: JSON.stringify(editedQuery),
+                    headers: { "Content-Type": "application/json" },
+                })
+                    .done(response => {
+                        // queriesSelect.update(editedQuery);
+                        console.log(response.success);
+                        $('#myModal').modal('hide');
+                    })
+                    .fail((xhr, status, err) => { console.error("Error: ", err) })
+                    .always()
             })
         })
     </script>
