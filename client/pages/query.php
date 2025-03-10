@@ -139,6 +139,7 @@
                         queriesSelect.update(editedQuery);
                         $("#queriesSelect").find(`option[value="${queriesSelect.store.queryId}"]`).text(editedQuery.name);
                         $("#queryText").text(editedQuery.query);
+                        $("#queriesSelect").trigger('change');
                         $('#myModal').modal('hide');
                     })
                     .fail((xhr, status, err) => { console.error("Error: ", err) })
