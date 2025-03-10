@@ -75,7 +75,7 @@
                         <input id="modalQueryName" type="text" title="Название запроса">
                     </div>
                     <div class="border mb-2">
-                        <input id="modalQueryText" type="text" title="Текст запроса">
+                        <textarea id="modalQueryText" type="text" title="Текст запроса"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
