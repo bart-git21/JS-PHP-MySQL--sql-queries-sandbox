@@ -106,6 +106,14 @@
                 const createTable = new TableController(new TableView(), new TableModel(queriesSelect.store.queryResult));
                 createTable.display();
             })
+
+            // jQuery modal usage
+            $('#myModal').on('shown.bs.modal', function (e) {
+                if (!Object.keys(queriesSelect.store).length) {
+                    $('#myModal').modal('hide');
+                    return;
+                }
+            })
         })
     </script>
 </body>
