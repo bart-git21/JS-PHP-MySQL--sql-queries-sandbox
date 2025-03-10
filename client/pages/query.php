@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Сохранить</button>
+                    <button id="saveModalBtn" type="button" class="btn btn-primary">Сохранить</button>
                 </div>
             </div>
         </div>
@@ -121,6 +121,9 @@
                 var modal = $(this);
                 modal.find('#modalQueryName').val("");
                 modal.find('#modalQueryText').val("");
+            })
+            $("#saveModalBtn").on("click", function () {
+                $('#myModal').modal('hide');
             })
         })
     </script>
