@@ -113,6 +113,9 @@
                     $('#myModal').modal('hide');
                     return;
                 }
+                const selectedOption = $('#queriesSelect').find(`option[value="${queriesSelect.store.queryId}"]`);
+                $("#modalQueryName").val(selectedOption.text());
+                $("#modalQueryText").val(queriesSelect.store.queryText);
             })
         })
     </script>
