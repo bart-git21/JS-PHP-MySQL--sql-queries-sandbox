@@ -1,0 +1,61 @@
+class selectModel {
+  constructor(list) {
+    this.list = list;
+  }
+}
+class selectView {
+  constructor() {
+    this.select = $("#queriesSelect");
+  }
+  option({ id, name }) {
+    return `
+            <option value="${id}">${name}</option>
+        `;
+  }
+  addChangeListener(callback) {
+    this.select.on("change", function (event) {
+      const queryId = event.target.value;
+      $.ajax({
+        url: "../../server/queries.php",
+        method: "POST",
+        data: JSON.stringify({ id: queryId }),
+        headers: { contentType: "application/json" },
+      })
+        .done((response) => {
+          callback({
+            queryId,
+            queryText: response.query,
+            queryResult: response.userResult,
+          });
+        })
+        .fail()
+        .always();
+    });
+  }
+}
+class selectController {
+  constructor(view, model) {
+    this.view = view;
+    this.model = model;
+    this.store = {};
+  }
+  apendOptions() {
+    this.model.list.forEach((elem) =>
+      $("#queriesSelect").append(this.view.option(elem))
+    );
+    $("#queriesSelect").val("-1");
+  }
+  startChangeListener() {
+    function handleChangedSelect(data) {
+      this.store = data;
+      console.log(this.store);
+      $("#queryText").text(this.store.queryText);
+      $("#table").html("");
+      // const createTable = new TableController(new TableView(), new TableModel(this.store.queryResult));
+      // createTable.display();
+    }
+
+    this.view.addChangeListener(handleChangedSelect.bind(this));
+  }
+}
+export { selectModel, selectView, selectController };
