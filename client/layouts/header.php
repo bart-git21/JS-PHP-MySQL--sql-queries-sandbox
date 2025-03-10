@@ -55,7 +55,7 @@
             .done(response => {
                 console.log(response);
                 localStorage.setItem("user", $("#userSelect").val());
-                // location.reload();
+                location.reload();
             })
             .fail((xhr, status, err) => { console.error("Error: ", err) })
             .always()
