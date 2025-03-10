@@ -135,8 +135,8 @@
                     headers: { "Content-Type": "application/json" },
                 })
                     .done(response => {
-                        // queriesSelect.update(editedQuery);
                         console.log(response.success);
+                        queriesSelect.update(editedQuery);
                         $("#queriesSelect").find(`option[value="${queriesSelect.store.queryId}"]`).text(editedQuery.name);
                         $("#queryText").text(editedQuery.query);
                         $('#myModal').modal('hide');
