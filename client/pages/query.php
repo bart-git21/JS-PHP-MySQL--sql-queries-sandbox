@@ -71,7 +71,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div class="border mb-2">
+                        <input id="modalQueryName" type="text" title="Название запроса">
+                    </div>
+                    <div class="border mb-2">
+                        <input id="modalQueryText" type="text" title="Текст запроса">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">Сохранить</button>
