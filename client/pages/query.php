@@ -73,7 +73,7 @@
                     <option value="${id}">${name}</option>
                 `
             }
-            fetchQueryResult() {
+            addChangeListener(callback) {
                 this.select.on("change", function (event) {
                     const queryId = event.target.value;
                     $.ajax({
@@ -82,16 +82,15 @@
                         data: JSON.stringify({ id: queryId }),
                         headers: { "contentType": "application/json" },
                     })
-                    .done(response => {
-                        $("#queryText").text(response.query);
-                    })
-                    .then(response => {
-                        console.log(response.userResult);
-                        const createTable = new TableController(new TableView(), new TableModel(response.userResult));
-                        createTable.display();
-                    })
-                    .fail()
-                    .always()
+                        .done(response => {
+                            callback({
+                                queryId,
+                                queryText: response.query,
+                                queryResult: response.userResult,
+                            });
+                        })
+                        .fail()
+                        .always()
                 })
             }
         }
@@ -99,29 +98,42 @@
             constructor(view, model) {
                 this.view = view;
                 this.model = model;
+                this.store = {};
             }
             apendOptions() {
                 this.model.list.forEach(elem => $("#queriesSelect").append(this.view.option(elem)));
                 $("#queriesSelect").val('-1');
             }
-            change() {
-                this.view.fetchQueryResult();
+            startChangeListener() {
+                function handleChangedSelect(data) {
+                    this.store = data;
+                    console.log(this.store);
+                    $("#queryText").text(this.store.queryText);
+                    $("#table").html("");
+                    // const createTable = new TableController(new TableView(), new TableModel(this.store.queryResult));
+                    // createTable.display();
+                }
+
+                this.view.addChangeListener(handleChangedSelect.bind(this));
             }
         }
+
         $(document).ready(function () {
+            let queriesSelect = {};
             $.ajax({
                 url: "../../server/queries.php",
                 method: "GET",
             })
                 .done(response => {
-                    const queriesSelect = new selectController(new selectView(), new selectModel(response));
+                    queriesSelect = new selectController(new selectView(), new selectModel(response));
                     queriesSelect.apendOptions();
-                    queriesSelect.change();
+                    queriesSelect.startChangeListener();
                 })
                 .fail()
                 .always()
             $("#requestQueryBtn").on("click", function () {
-                $("#queriesSelect").trigger("change");
+                const createTable = new TableController(new TableView(), new TableModel(queriesSelect.store.queryResult));
+                createTable.display();
             })
         })
     </script>
