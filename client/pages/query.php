@@ -117,6 +117,11 @@
                 $("#modalQueryName").val(selectedOption.text());
                 $("#modalQueryText").val(queriesSelect.store.queryText);
             })
+            $('#myModal').on('hidden.bs.modal', function (e) {
+                var modal = $(this);
+                modal.find('#modalQueryName').val("");
+                modal.find('#modalQueryText').val("");
+            })
         })
     </script>
 </body>
