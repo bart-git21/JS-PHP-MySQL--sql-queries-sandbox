@@ -16,6 +16,6 @@ Deployment: GitHub.
 Intro page display all users queries
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/intro.jpg)
 Header has log-in select
-![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/user.jpg)
+![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/login.jpg)
 Queries page display queries logged
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/select.jpg)
