@@ -48,11 +48,8 @@ class selectController {
   startChangeListener() {
     function handleChangedSelect(data) {
       this.store = data;
-      console.log(this.store);
       $("#queryText").text(this.store.queryText);
       $("#table").html("");
-      // const createTable = new TableController(new TableView(), new TableModel(this.store.queryResult));
-      // createTable.display();
     }
 
     this.view.addChangeListener(handleChangedSelect.bind(this));
