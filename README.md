@@ -1,4 +1,4 @@
-﻿# SQL queries store
+﻿# SQL queries sandbox
 
 # Project Overview:
 ```
