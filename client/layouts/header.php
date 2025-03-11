@@ -9,16 +9,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
             <li class="nav-item">
-                <a class="nav-link" href="client/index.php">Home</a>
+                <a class="nav-link" href="/client/index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="client/pages/query.php">Queries
+                <a class="nav-link" href="/client/pages/query.php">Queries
                     testing</a>
             </li>
         </ul>
     </div>
     <div class="d-flex align-items-center">
-        <span class="flex-shrink-0 mr-2">Sign in</span>
         <?php include __DIR__ . "/../components/user_select.php"?>
     </div>
 </nav>
