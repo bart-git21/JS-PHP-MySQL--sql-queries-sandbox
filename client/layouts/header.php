@@ -9,29 +9,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
             <li class="nav-item">
-                <a class="nav-link" href="/client/index.php">Home</a>
+                <a class="nav-link" href="client/index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/client/pages/query.php">Queries
+                <a class="nav-link" href="client/pages/query.php">Queries
                     testing</a>
             </li>
         </ul>
     </div>
     <div class="d-flex align-items-center">
         <span class="flex-shrink-0 mr-2">Sign in</span>
-        <select class="custom-select" id="userSelect">
-            <option selected disabled value="0">Пользователь</option>
-            <option value="1">Admin</option>
-            <option value="2">Item1</option>
-            <option value="3">Item2</option>
-        </select>
+        <?php include __DIR__ . "/../components/user_select.php"?>
     </div>
 </nav>
 
 <script>
     const links = document.querySelectorAll(".nav-link");
-    const user = localStorage.getItem('user') || 0;
-    $("#userSelect").val(user);
     const id = localStorage.getItem('activePage') || 0;
     (id + 1) && links[id].classList.add("active");
     (id + 1) && links[id].setAttribute("aria-current", "page");
@@ -44,21 +37,6 @@
                 e.removeAttribute("aria-current");
             })
         }
-    })
-    $("#userSelect").on("change", function () {
-        $.ajax({
-            url: "/server/login.php",
-            method: "POST",
-            data: JSON.stringify({ userId: this.value, }),
-            headers: { contentType: "application/json" },
-        })
-            .done(response => {
-                console.log(response);
-                localStorage.setItem("user", $("#userSelect").val());
-                location.reload();
-            })
-            .fail((xhr, status, err) => { console.error("Error: ", err) })
-            .always()
     })
 </script>
 
