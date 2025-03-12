@@ -80,6 +80,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id="saveModalBtn" type="button" class="btn btn-primary">Сохранить</button>
+                    <button id="createModalBtn" type="button" class="btn btn-primary">Создать</button>
                 </div>
             </div>
         </div>
@@ -124,9 +125,10 @@
             })
             $("#saveModalBtn").on("click", function () {
                 const editedQuery = {
-                    id: queriesSelect.store.queryId,
+                    id: +queriesSelect.store.queryId,
                     name: $("#modalQueryName").val(),
-                    query: $("#modalQueryText").val()
+                    query: $("#modalQueryText").val(),
+                    userID: localStorage.getItem('userId')
                 };
                 $.ajax({
                     url: "../../server/queries.php",
@@ -140,6 +142,31 @@
                         $("#queriesSelect").find(`option[value="${queriesSelect.store.queryId}"]`).text(editedQuery.name);
                         $("#queryText").text(editedQuery.query);
                         $("#queriesSelect").trigger('change');
+                        $('#myModal').modal('hide');
+                    })
+                    .fail((xhr, status, err) => { console.error("Error: ", err) })
+                    .always()
+            })
+            $("#createModalBtn").on("click", function () {
+                const newQuery = {
+                    name: $("#modalQueryName").val(),
+                    query: $("#modalQueryText").val(),
+                    userID: localStorage.getItem('userId')
+                };
+                $.ajax({
+                    url: "../../server/queries.php",
+                    method: "POST",
+                    data: JSON.stringify(newQuery),
+                    headers: { "Content-Type": "application/json" },
+                })
+                    .done(response => {
+                        queriesSelect.update({
+                            id: response.newQueryId,
+                            name: newQuery.name,
+                            query: newQuery.query,
+                            userID: localStorage.getItem('userId')
+                        });
+                        $(`#selectId option[value='${response.newQueryId}']`).prop("selected", true);
                         $('#myModal').modal('hide');
                     })
                     .fail((xhr, status, err) => { console.error("Error: ", err) })
