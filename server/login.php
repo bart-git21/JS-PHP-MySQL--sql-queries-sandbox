@@ -20,6 +20,7 @@ switch ($requestMethod) {
         $stmt->bindParam(":id", $userId);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result['userId'] = $userId;
         header("Content-Type: application/json;charset=UTF-8");
         echo json_encode($result);
         break;

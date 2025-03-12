@@ -77,8 +77,9 @@
                 headers: { contentType: "application/json" },
             })
                 .done(response => {
-                    console.log(response.login);
+                    console.log(response);
                     localStorage.setItem("user", response.login);
+                    localStorage.setItem("userId", response.userId);
                     location.reload();
                 })
                 .fail((xhr, status, err) => { console.error("Error: ", err) })
