@@ -15,23 +15,36 @@ switch ($requestMethod) {
         echo json_encode($result);
         break;
     case "POST":
-        $data = json_decode(file_get_contents('php://input'));
-        $id = $data->id;
-        $stmt = $conn->prepare("SELECT * FROM queries WHERE id = :id");
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $sql = $result['query'];
+        if (isset($_GET["id"])) {
+            $data = json_decode(file_get_contents('php://input'));
+            $id = $data->id;
+            $stmt = $conn->prepare("SELECT * FROM queries WHERE id = :id");
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $userResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $sql = $result['query'];
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $queryResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        header("Content-Type: application/json");
-        echo json_encode([
-            "query" => $sql,
-            "userResult" => $userResult
-        ]);
+            header("Content-Type: application/json");
+            echo json_encode([
+                "query" => $result,
+                "queryResult" => $queryResult
+            ]);
+        } else {
+            $data = json_decode(file_get_contents('php://input'));
+            $stmt = $conn->prepare("INSERT INTO queries (name, query, user_id) VALUES (:name, :query, :userID)");
+            $stmt->bindParam(":name", $data->name);
+            $stmt->bindParam(":query", $data->query);
+            $stmt->bindParam(":userID", $data->userID);
+            $stmt->execute();
+            $lastInsertId = $conn->lastInsertId();
+
+            header("Content-Type: application/json");
+            echo json_encode(["newQueryId" => $lastInsertId]);
+        }
         break;
     case "PUT":
         $json = file_get_contents("php://input");
