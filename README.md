@@ -22,3 +22,5 @@ Deployment: GitHub.
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/intro.jpg)
 - Queries page show queries for logged user
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/select.jpg)
+- User can modify the query or create the new one.
+![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-sandbox/blob/main/edit.jpg)
