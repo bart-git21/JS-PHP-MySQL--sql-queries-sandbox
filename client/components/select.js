@@ -16,7 +16,7 @@ class selectView {
     this.select.on("change", function (event) {
       const queryId = event.target.value;
       $.ajax({
-        url: "../../server/queries.php",
+        url: `../../server/queries.php?id=${queryId}`,
         method: "POST",
         data: JSON.stringify({ id: queryId }),
         headers: { contentType: "application/json" },
@@ -24,8 +24,9 @@ class selectView {
         .done((response) => {
           callback({
             queryId,
-            queryText: response.query,
-            queryResult: response.userResult,
+            queryName: response.query.name,
+            queryText: response.query.query,
+            queryResult: response.queryResult,
           });
         })
         .fail()
@@ -61,6 +62,11 @@ class selectController {
         e.query = data.query;
       }
     });
+    if (!this.model.list.find(e => e.id === data.id)) {
+        this.model.list.push(data);
+        $("#queriesSelect").append(this.view.option(this.model.list.at(-1)))
+    }
+    this.store.queryName = data.name;
     this.store.queryText = data.query;
   }
 }
