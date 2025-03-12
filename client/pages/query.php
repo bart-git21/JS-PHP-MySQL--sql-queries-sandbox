@@ -110,10 +110,10 @@
 
             // Bootstrap modal usage
             $('#myModal').on('shown.bs.modal', function (e) {
-                if (!Object.keys(queriesSelect.store).length) {
-                    $('#myModal').modal('hide');
-                    return;
-                }
+                // if (!Object.keys(queriesSelect.store).length) {
+                //     $('#myModal').modal('hide');
+                //     return;
+                // }
                 const selectedOption = $('#queriesSelect').find(`option[value="${queriesSelect.store.queryId}"]`);
                 $("#modalQueryName").val(selectedOption.text());
                 $("#modalQueryText").val(queriesSelect.store.queryText);
