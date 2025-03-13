@@ -50,7 +50,7 @@ class selectController {
     function handleChangedSelect(data) {
       this.store = data;
       $("#queryText").text(this.store.queryText);
-      $("#table").html("");
+      $("#table").clean();
     }
 
     this.view.addChangeListener(handleChangedSelect.bind(this));
