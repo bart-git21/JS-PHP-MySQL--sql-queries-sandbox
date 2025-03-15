@@ -8,10 +8,8 @@ class selectView {
     this.$selector = selector;
   }
   createOptions(list) {
-    list.forEach((elem) =>
-      $("#queriesSelect").append(this.option(elem))
-    );
-    $("#queriesSelect").val("-1");
+    list.forEach((elem) => $(this.$selector).append(this.option(elem)));
+    $(this.$selector).val("-1");
   }
   option({ id, name }) {
     return `
