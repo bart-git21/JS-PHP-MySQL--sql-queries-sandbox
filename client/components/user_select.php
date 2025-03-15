@@ -34,13 +34,12 @@
         constructor(selector) {
             this.$selector = selector;
         }
-        createOption(data) {
-            return `<option value="${data.id}">${data.login}</option>`
+        createOptions(list) {
+            list.forEach(e => this.addOption(e));
+            $(this.$selector).val("-1");
         }
-        setSelect(list) {
-            let optionsList = "";
-            list.forEach(e => optionsList += this.createOption(e));
-            $(this.$selector).append(optionsList);
+        addOption({ id, login }) {
+            $(this.$selector).append(`<option value="${id}">${login}</option>`);
         }
     }
     class UserSelectController {
@@ -49,7 +48,7 @@
             this.view = view;
         }
         create() {
-            this.view.setSelect(this.model.list);
+            this.view.createOptions(this.model.list);
         }
     }
     $(document).ready(function () {
