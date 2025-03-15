@@ -26,11 +26,11 @@
 
         <div class="card mb-3" style="width: 18rem;">
             <div class="card-body">
-                <div class="input-group mb-3">
+                <div class="input-group mb-3 input-group-sm">
                     <select class="custom-select" id="queriesSelect">
                         <option selected disabled value="-1">Выбор запроса</option>
                     </select>
-                    <div class="input-group-append">
+                    <div class="input-group-append input-group-sm">
                         <button class="btn btn-outline-secondary btn-sm" type="button">u</button>
                     </div>
                 </div>
