@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="saveModalBtn" type="button" class="btn btn-primary">Сохранить</button>
+                    <button id="editModalBtn" type="button" class="btn btn-primary">Редактировать</button>
                     <button id="createModalBtn" type="button" class="btn btn-primary">Создать</button>
                 </div>
             </div>
@@ -123,7 +123,7 @@
                 modal.find('#modalQueryName').val("");
                 modal.find('#modalQueryText').val("");
             })
-            $("#saveModalBtn").on("click", function () {
+            $("#editModalBtn").on("click", function () {
                 const editedQuery = {
                     id: +queriesSelect.store.queryId,
                     name: $("#modalQueryName").val(),
