@@ -16,9 +16,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <select class="custom-select" id="userSelect">
+                <select class="custom-select" id="userLogin">
                     <option selected disabled value="-1">Пользователь</option>
                 </select>
+                    <div class="border mb-2">
+                        <input id="userPassword" type="password" title="Название запроса">
+                    </div>
             </div>
         </div>
     </div>
@@ -68,7 +71,7 @@
                     //     password: string;
                     //     role: string;
                     // }
-                    const userSelect = new UserSelectController(new UserSelectModel(users), new UserSelectView("#userSelect"));
+                    const userSelect = new UserSelectController(new UserSelectModel(users), new UserSelectView("#userLogin"));
                     userSelect.create();
                 })
                 .fail((xhr, status, err) => { console.error("Error: ", err) })
@@ -76,7 +79,7 @@
         })
 
         // changing the select is changing the user
-        $("#userSelect").on("change", function () {
+        $("#userLogin").on("change", function () {
             $.ajax({
                 url: "/server/login.php",
                 method: "POST",
