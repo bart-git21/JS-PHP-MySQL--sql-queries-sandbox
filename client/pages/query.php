@@ -31,7 +31,7 @@
                         <option selected disabled value="-1">Выбор запроса</option>
                     </select>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">u</button>
+                        <button class="btn btn-outline-secondary btn-sm" type="button">u</button>
                     </div>
                 </div>
                 <div class="border mb-2" id="queryText">
@@ -40,11 +40,11 @@
 
                 <div>
                     <!-- Button trigger modal -->
-                    <button type="button" id="modalBtn" data-toggle="modal" data-target="#myModal">
+                    <button class="btn-sm" type="button" id="modalBtn" data-toggle="modal" data-target="#myModal">
                         Редактирование
                     </button>
                     <!-- Button trigger table controller -->
-                    <button id="requestQueryBtn">Выполнить</button>
+                    <button class="btn-sm" id="requestQueryBtn">Выполнить</button>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Редактирование</h5>
-                    <button type="button" class="close" id="closeModalBtn" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close btn-sm" id="closeModalBtn" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -79,8 +79,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="editModalBtn" type="button" class="btn btn-primary">Редактировать</button>
-                    <button id="createModalBtn" type="button" class="btn btn-primary">Создать</button>
+                    <button id="editModalBtn" type="button" class="btn btn-primary btn-sm">Редактировать</button>
+                    <button id="createModalBtn" type="button" class="btn btn-primary btn-sm">Создать</button>
                 </div>
             </div>
         </div>

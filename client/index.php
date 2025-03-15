@@ -30,7 +30,7 @@
     </header>
     <main class="container">
         <h1 class="text-center">Users queries list</h1>
-        <button id="usersQueries">Show</button>
+        <button class="btn-sm" id="usersQueries">Show</button>
         <div id="table"></div>
     </main>
 

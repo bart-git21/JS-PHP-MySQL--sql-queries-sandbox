@@ -1,6 +1,6 @@
 <div id="user" class="mr-2"></div>
 <!-- Button trigger modal -->
-<div id="login" type="button" class="btn btn-info" data-toggle="modal" data-target="#usersModal">
+<div id="login" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#usersModal">
     Sign in
 </div>
 
@@ -11,7 +11,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="usersModalLabel">Choose the user</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close btn-sm" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
