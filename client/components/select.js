@@ -78,15 +78,13 @@ class selectController {
   //     userID: string;
   //   }
   update(data) {
-    this.model.list.forEach((e) => {
-      if (e.id === data.id) {
-        e.name = data.name;
-        e.query = data.query;
-      }
-    });
-    if (!this.model.list.find((e) => e.id === data.id)) {
+    const editedQuery = this.model.list.find((e) => e.id === data.id);
+    if (editedQuery) {
+      editedQuery.name = data.name;
+      editedQuery.query = data.query;
+    } else {
       this.model.list.push(data);
-      $("#queriesSelect").append(this.view.option(this.model.list.at(-1)));
+      this.view.addOption(this.model.list.at(-1));
     }
     this.store.queryName = data.name;
     this.store.queryText = data.query;
