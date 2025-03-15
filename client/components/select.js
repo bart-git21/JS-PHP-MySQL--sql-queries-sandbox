@@ -71,12 +71,12 @@ class selectController {
 
     this.view.addChangeListener(handleChangedSelect.bind(this));
   }
-//   interface Data {
-//     id: number;
-//     name: string;
-//     query: string;
-//     userID: string;
-//   }
+  //   interface Data {
+  //     id: number;
+  //     name: string;
+  //     query: string;
+  //     userID: string;
+  //   }
   update(data) {
     this.model.list.forEach((e) => {
       if (e.id === data.id) {
