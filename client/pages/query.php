@@ -161,7 +161,7 @@
                 })
                     .done(response => {
                         queriesSelect.update({
-                            id: response.newQueryId,
+                            id: +response.newQueryId,
                             name: newQuery.name,
                             query: newQuery.query,
                             userID: localStorage.getItem('userId')
