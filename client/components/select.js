@@ -20,11 +20,11 @@ class selectView {
   }
   addChangeListener(callback) {
     $(this.$selector).on("change", function (event) {
-      const queryId = event.target.value;
+      const id = event.target.value;
       $.ajax({
-        url: `../../server/queries.php?id=${queryId}`,
+        url: `../../server/queries.php?id=${id}`,
         method: "POST",
-        data: JSON.stringify({ id: queryId }),
+        data: JSON.stringify({ id }),
         headers: { contentType: "application/json" },
       })
         .done((response) => {
