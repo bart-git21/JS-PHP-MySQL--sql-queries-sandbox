@@ -114,7 +114,7 @@
                 //     $('#myModal').modal('hide');
                 //     return;
                 // }
-                const selectedOption = $('#queriesSelect').find(`option[value="${queriesSelect.store.queryId}"]`);
+                const selectedOption = $('#queriesSelect').find(`option[value="${queriesSelect.store.id}"]`);
                 $("#modalQueryName").val(selectedOption.text());
                 $("#modalQueryText").val(queriesSelect.store.queryText);
             })
@@ -125,7 +125,7 @@
             })
             $("#editModalBtn").on("click", function () {
                 const editedQuery = {
-                    id: +queriesSelect.store.queryId,
+                    id: +queriesSelect.store.id,
                     name: $("#modalQueryName").val(),
                     query: $("#modalQueryText").val(),
                     userID: localStorage.getItem('userId')
@@ -139,7 +139,7 @@
                     .done(response => {
                         console.log(response.success);
                         queriesSelect.update(editedQuery);
-                        $("#queriesSelect").find(`option[value="${queriesSelect.store.queryId}"]`).text(editedQuery.name);
+                        $("#queriesSelect").find(`option[value="${queriesSelect.store.id}"]`).text(editedQuery.name);
                         $("#queryText").text(editedQuery.query);
                         $("#queriesSelect").trigger('change');
                         $('#myModal').modal('hide');
