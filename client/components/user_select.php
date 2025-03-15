@@ -60,7 +60,7 @@
                 method: "GET",
             })
                 .done(users => {
-                    // interface Response {
+                    // interface Users {
                     //     id: number;
                     //     login: string;
                     //     password: string;
