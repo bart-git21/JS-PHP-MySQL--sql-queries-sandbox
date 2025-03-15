@@ -1,7 +1,7 @@
 <div id="user" class="mr-2"></div>
 <!-- Button trigger modal -->
 <div id="login" type="button" class="btn btn-info" data-toggle="modal" data-target="#usersModal">
-    Sign on
+    Sign in
 </div>
 
 <!-- Modal -->
