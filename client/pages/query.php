@@ -97,7 +97,7 @@
                 method: "GET",
             })
                 .done(response => {
-                    queriesSelect = new selectController(new selectView(), new selectModel(response));
+                    queriesSelect = new selectController(new selectView('$("#queriesSelect")'), new selectModel(response));
                     queriesSelect.apendOptions();
                     queriesSelect.startChangeListener();
                 })

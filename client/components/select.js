@@ -4,8 +4,8 @@ class selectModel {
   }
 }
 class selectView {
-  constructor() {
-    this.select = $("#queriesSelect");
+  constructor(selector) {
+    this.$selector = selector;
   }
   option({ id, name }) {
     return `
@@ -13,7 +13,7 @@ class selectView {
         `;
   }
   addChangeListener(callback) {
-    this.select.on("change", function (event) {
+    this.$selector.on("change", function (event) {
       const queryId = event.target.value;
       $.ajax({
         url: `../../server/queries.php?id=${queryId}`,
