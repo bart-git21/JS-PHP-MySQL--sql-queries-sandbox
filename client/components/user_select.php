@@ -31,13 +31,16 @@
         }
     }
     class UserSelectView {
+        constructor(selector) {
+            this.$selector = selector;
+        }
         createOption(data) {
             return `<option value="${data.id}">${data.login}</option>`
         }
-        setSelect(list, selector) {
+        setSelect(list) {
             let optionsList = "";
             list.forEach(e => optionsList += this.createOption(e));
-            $(`${selector}`).append(optionsList);
+            $(`${this.selector}`).append(optionsList);
         }
     }
     class UserSelectController {
@@ -45,8 +48,8 @@
             this.model = model;
             this.view = view;
         }
-        create(selector) {
-            this.view.setSelect(this.model.list, selector);
+        create() {
+            this.view.setSelect(this.model.list);
         }
     }
     $(document).ready(function () {
@@ -66,8 +69,8 @@
                     //     password: string;
                     //     role: string;
                     // }
-                    const userSelect = new UserSelectController(new UserSelectModel(users), new UserSelectView());
-                    userSelect.create("#userSelect");
+                    const userSelect = new UserSelectController(new UserSelectModel(users), new UserSelectView("#userSelect"));
+                    userSelect.create();
                 })
                 .fail((xhr, status, err) => { console.error("Error: ", err) })
                 .always()
