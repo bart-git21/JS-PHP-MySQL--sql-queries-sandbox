@@ -17,7 +17,7 @@
             </div>
             <div class="modal-body">
                 <select class="custom-select" id="userSelect">
-                    <option selected disabled value="0">Пользователь</option>
+                    <option selected disabled value="-1">Пользователь</option>
                 </select>
             </div>
         </div>
@@ -37,7 +37,7 @@
         setSelect(list, selector) {
             let optionsList = "";
             list.forEach(e => optionsList += this.createOption(e));
-            $(`${selector}`).html(optionsList)
+            $(`${selector}`).append(optionsList);
         }
     }
     class UserSelectController {
@@ -59,9 +59,14 @@
                 url: "/server/login.php",
                 method: "GET",
             })
-                .done(response => {
-                    console.log(response);
-                    const userSelect = new UserSelectController(new UserSelectModel(response), new UserSelectView());
+                .done(users => {
+                    // interface Response {
+                    //     id: number;
+                    //     login: string;
+                    //     password: string;
+                    //     role: string;
+                    // }
+                    const userSelect = new UserSelectController(new UserSelectModel(users), new UserSelectView());
                     userSelect.create("#userSelect");
                 })
                 .fail((xhr, status, err) => { console.error("Error: ", err) })
@@ -76,10 +81,13 @@
                 data: JSON.stringify({ userId: this.value, }),
                 headers: { contentType: "application/json" },
             })
-                .done(response => {
-                    console.log(response);
-                    localStorage.setItem("user", response.login);
-                    localStorage.setItem("userId", response.userId);
+                .done(loggedUser => {
+                    // interface LoggedUser {
+                    //     login: string;
+                    //     userId: number;
+                    // }
+                    localStorage.setItem("user", loggedUser.login);
+                    localStorage.setItem("userId", loggedUser.userId);
                     location.reload();
                 })
                 .fail((xhr, status, err) => { console.error("Error: ", err) })
