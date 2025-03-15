@@ -24,7 +24,7 @@
     <main class="container">
         <h1 class="text-center">Query sandbox</h1>
 
-        <div class="card" style="width: 18rem;">
+        <div class="card mb-3" style="width: 18rem;">
             <div class="card-body">
                 <div class="input-group mb-3">
                     <select class="custom-select" id="queriesSelect">
