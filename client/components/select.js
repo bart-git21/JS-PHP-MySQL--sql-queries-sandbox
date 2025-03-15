@@ -7,6 +7,12 @@ class selectView {
   constructor(selector) {
     this.$selector = selector;
   }
+  createOptions(list) {
+    list.forEach((elem) =>
+      $("#queriesSelect").append(this.option(elem))
+    );
+    $("#queriesSelect").val("-1");
+  }
   option({ id, name }) {
     return `
             <option value="${id}">${name}</option>
@@ -40,11 +46,8 @@ class selectController {
     this.model = model;
     this.store = {};
   }
-  apendOptions() {
-    this.model.list.forEach((elem) =>
-      $("#queriesSelect").append(this.view.option(elem))
-    );
-    $("#queriesSelect").val("-1");
+  create() {
+    this.view.createOptions(this.model.list);
   }
   startChangeListener() {
     function handleChangedSelect(data) {
