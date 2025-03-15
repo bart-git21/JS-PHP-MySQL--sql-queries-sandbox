@@ -13,7 +13,7 @@ class selectView {
         `;
   }
   addChangeListener(callback) {
-    this.$selector.on("change", function (event) {
+    $(this.$selector).on("change", function (event) {
       const queryId = event.target.value;
       $.ajax({
         url: `../../server/queries.php?id=${queryId}`,
@@ -62,9 +62,9 @@ class selectController {
         e.query = data.query;
       }
     });
-    if (!this.model.list.find(e => e.id === data.id)) {
-        this.model.list.push(data);
-        $("#queriesSelect").append(this.view.option(this.model.list.at(-1)))
+    if (!this.model.list.find((e) => e.id === data.id)) {
+      this.model.list.push(data);
+      $("#queriesSelect").append(this.view.option(this.model.list.at(-1)));
     }
     this.store.queryName = data.name;
     this.store.queryText = data.query;
