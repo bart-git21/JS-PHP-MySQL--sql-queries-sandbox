@@ -14,13 +14,11 @@ class selectView {
     this.$selector = selector;
   }
   createOptions(list) {
-    list.forEach((elem) => $(this.$selector).append(this.option(elem)));
+    list.forEach((elem) => this.addOption(elem));
     $(this.$selector).val("-1");
   }
-  option({ id, name }) {
-    return `
-            <option value="${id}">${name}</option>
-        `;
+  addOption({ id, name }) {
+    $(this.$selector).append(`<option value="${id}">${name}</option>`);
   }
   addChangeListener(callback) {
     $(this.$selector).on("change", function (event) {
