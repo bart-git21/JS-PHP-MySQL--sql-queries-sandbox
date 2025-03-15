@@ -40,7 +40,7 @@
         setSelect(list) {
             let optionsList = "";
             list.forEach(e => optionsList += this.createOption(e));
-            $(`${this.selector}`).append(optionsList);
+            $(this.$selector).append(optionsList);
         }
     }
     class UserSelectController {
