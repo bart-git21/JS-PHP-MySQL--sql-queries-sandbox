@@ -1,5 +1,11 @@
 class selectModel {
   constructor(list) {
+    // interface List {
+    //     id: number;
+    //     name: string;
+    //     query: string;
+    //     userId: number;
+    // }
     this.list = list;
   }
 }
@@ -48,6 +54,15 @@ class selectController {
     this.view.createOptions(this.model.list);
   }
   startChangeListener() {
+    // interface DBTableStringData {
+    //     someColumn: someType;
+    // }
+    // interface Data {
+    //     id: number;
+    //     queryName: string,
+    //     queryText: string,
+    //     queryResult: DBTableStringData[],
+    // }
     function handleChangedSelect(data) {
       this.store = data;
       $("#queryText").text(this.store.queryText);
@@ -56,6 +71,12 @@ class selectController {
 
     this.view.addChangeListener(handleChangedSelect.bind(this));
   }
+//   interface Data {
+//     id: number;
+//     name: string;
+//     query: string;
+//     userID: string;
+//   }
   update(data) {
     this.model.list.forEach((e) => {
       if (e.id === data.id) {
