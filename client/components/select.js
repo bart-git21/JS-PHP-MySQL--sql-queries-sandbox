@@ -29,7 +29,7 @@ class selectView {
       })
         .done((response) => {
           callback({
-            queryId,
+            id,
             queryName: response.query.name,
             queryText: response.query.query,
             queryResult: response.queryResult,
