@@ -8,8 +8,12 @@ class selectModel {
     // }
     this.list = list;
   }
-  add(data) {
-    this.list.push(data);
+  update(data) {
+    const editedQuery = this.list.find((e) => e.id === data.id);
+    if (editedQuery) {
+      editedQuery.name = data.name;
+      editedQuery.query = data.query;
+    } else this.list.push(data);
   }
 }
 class selectView {
@@ -79,14 +83,10 @@ class selectController {
   //     userID: string;
   //   }
   update(data) {
-    const editedQuery = this.model.list.find((e) => e.id === data.id);
-    if (editedQuery) {
-      editedQuery.name = data.name;
-      editedQuery.query = data.query;
-    } else {
-      this.model.add(data);
+    const modelLength = this.model.list.length;
+    this.model.update(data);
+    modelLength < this.model.list.length &&
       this.view.addOption(this.model.list.at(-1));
-    }
     this.store.queryName = data.name;
     this.store.queryText = data.query;
   }
