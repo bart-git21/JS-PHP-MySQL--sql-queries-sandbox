@@ -8,6 +8,9 @@ class selectModel {
     // }
     this.list = list;
   }
+  add(data) {
+    this.list.push(data);
+  }
 }
 class selectView {
   constructor(selector) {
@@ -81,7 +84,7 @@ class selectController {
       editedQuery.name = data.name;
       editedQuery.query = data.query;
     } else {
-      this.model.list.push(data);
+      this.model.add(data);
       this.view.addOption(this.model.list.at(-1));
     }
     this.store.queryName = data.name;
