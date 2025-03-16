@@ -71,7 +71,7 @@
                     //     password: string;
                     //     role: string;
                     // }
-                    const userSelect = new UserSelectController(new UserSelectModel(users), new UserSelectView("#userLogin"));
+                    const userSelect = new UserSelectController(new UserSelectModel(users), new UserSelectView("#userLoginSelect"));
                     userSelect.create();
                 })
                 .fail((xhr, status, err) => { console.error("Error: ", err) })
@@ -79,7 +79,7 @@
         })
 
         // changing the select is changing the user
-        $("#loginSelect").on("change", function () {
+        $("#userLoginSelect").on("change", function () {
             $.ajax({
                 url: "/server/login/",
                 method: "POST",
