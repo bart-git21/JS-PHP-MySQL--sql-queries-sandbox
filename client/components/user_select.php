@@ -61,7 +61,7 @@
         // create select option
         $("#loginBtn").on("click", function () {
             $.ajax({
-                url: "/server/login/",
+                url: "/login/",
                 method: "GET",
             })
                 .done(users => {
@@ -81,7 +81,7 @@
         // changing the select is changing the user
         $("#userLoginSelect").on("change", function () {
             $.ajax({
-                url: "/server/login/",
+                url: "/login/",
                 method: "POST",
                 data: JSON.stringify({ userId: this.value, }),
                 headers: { contentType: "application/json" },
