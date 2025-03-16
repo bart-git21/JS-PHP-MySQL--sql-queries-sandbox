@@ -93,7 +93,7 @@
         $(document).ready(function () {
             let queriesSelect = {};
             $.ajax({
-                url: "/projects/php/php _ sql queries store/api/query/",
+                url: "/api/query/",
                 method: "GET",
             })
                 .done(response => {
@@ -131,7 +131,7 @@
                     userID: localStorage.getItem('userId')
                 };
                 $.ajax({
-                    url: "/projects/php/php _ sql queries store/api/query/",
+                    url: "/api/query/",
                     method: "PUT",
                     data: JSON.stringify(editedQuery),
                     headers: { "Content-Type": "application/json" },
@@ -154,7 +154,7 @@
                     userID: localStorage.getItem('userId')
                 };
                 $.ajax({
-                    url: "/projects/php/php _ sql queries store/api/query/",
+                    url: "/api/query/",
                     method: "POST",
                     data: JSON.stringify(newQuery),
                     headers: { "Content-Type": "application/json" },
