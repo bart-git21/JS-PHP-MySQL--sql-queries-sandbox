@@ -10,7 +10,7 @@ switch ($requestMethod) {
         if ($userId === "1") {
             $stmt = $conn->prepare('SELECT q.name, q.query, q.user_id, users.login FROM queries AS q LEFT JOIN users ON q.user_id = users.id ORDER BY users.login ASC');
         } else {
-            $stmt = $conn->prepare("SELECT * FROM queries WHERE user_id = :userId");
+            $stmt = $conn->prepare('SELECT q.*, users.login FROM queries AS q LEFT JOIN users ON q.user_id = users.id WHERE user_id = :userId');
             $stmt->bindParam(":userId", $userId);
         }
         $stmt->execute();
