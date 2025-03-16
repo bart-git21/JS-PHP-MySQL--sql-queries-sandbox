@@ -124,14 +124,15 @@
                 modal.find('#modalQueryText').val("");
             })
             $("#editModalBtn").on("click", function () {
+                const id = +queriesSelect.store.id;
                 const editedQuery = {
-                    id: +queriesSelect.store.id,
+                    id,
                     name: $("#modalQueryName").val(),
                     query: $("#modalQueryText").val(),
                     userId: localStorage.getItem('userId')
                 };
                 $.ajax({
-                    url: "/api/query/",
+                    url: `/api/query/?id=${id}`,
                     method: "PUT",
                     data: JSON.stringify(editedQuery),
                     headers: { "Content-Type": "application/json" },

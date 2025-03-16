@@ -59,17 +59,19 @@ switch ($requestMethod) {
         echo json_encode(["newQueryId" => $lastInsertId]);
         break;
     case "PUT":
-        // update a query
-        $json = file_get_contents("php://input");
-        $data = json_decode($json, true);
-        $stmt = $conn->prepare("UPDATE queries SET name = :name, query = :query WHERE id = :id");
-        $stmt->bindParam(":id", $data['id']);
-        $stmt->bindParam(":name", $data['name']);
-        $stmt->bindParam(":query", $data['query']);
-        $stmt->execute();
+        if (isset($_GET["id"])) {
+            // update a query with a specific id
+            $json = file_get_contents("php://input");
+            $data = json_decode($json, true);
+            $stmt = $conn->prepare("UPDATE queries SET name = :name, query = :query WHERE id = :id");
+            $stmt->bindParam(":id", $data['id']);
+            $stmt->bindParam(":name", $data['name']);
+            $stmt->bindParam(":query", $data['query']);
+            $stmt->execute();
 
-        header("Content-Type: application/json");
-        echo json_encode(["success" => "query successfully updated"]);
+            header("Content-Type: application/json");
+            echo json_encode(["success" => "query successfully updated"]);
+        }
         break;
     default:
         break;
