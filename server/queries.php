@@ -16,6 +16,13 @@ switch ($requestMethod) {
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         header("Content-Type: application/json;charset=UTF-8");
+        // interface Result {
+        //     login: string, // user login
+        //     user_id: number, // user id
+        //     id: number, // query id
+        //     name: string, // query name
+        //     query: string, // query text
+        // }
         echo json_encode($result);
         break;
     case "POST":
