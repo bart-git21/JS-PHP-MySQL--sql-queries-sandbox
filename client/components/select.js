@@ -1,16 +1,24 @@
 class selectModel {
   constructor(list) {
-    // interface List {
+    // interface List[] {
     //     id: number;
     //     name: string;
     //     query: string;
-    //     userId: number;
+    //     login: string;
+    //     user_id: number;
     // }
     this.list = list;
   }
   update(data) {
     const editedQuery = this.list.find((e) => e.id === data.id);
     if (editedQuery) {
+      // interface editedQuery {
+      //     id: number;
+      //     login: string;
+      //     name: string;
+      //     query: string;
+      //     user_id: number;
+      // }
       editedQuery.name = data.name;
       editedQuery.query = data.query;
     } else this.list.push(data);
@@ -37,6 +45,15 @@ class selectView {
         headers: { contentType: "application/json" },
       })
         .done((response) => {
+          // interface Response {
+          //     query: {
+          //         id: number;
+          //         name: string;
+          //         query: string;
+          //         user_id: number;
+          //     };
+          //     queryResult: any[];
+          // }
           callback({
             id,
             queryName: response.query.name,
@@ -76,13 +93,13 @@ class selectController {
 
     this.view.addChangeListener(handleChangedSelect.bind(this));
   }
-  //   interface Data {
-  //     id: number;
-  //     name: string;
-  //     query: string;
-  //     userID: string;
-  //   }
   update(data) {
+    //   interface Data {
+    //     id: number;
+    //     name: string;
+    //     query: string;
+    //     userId: string;
+    //   }
     const modelLength = this.model.list.length;
     this.model.update(data);
     modelLength < this.model.list.length &&
