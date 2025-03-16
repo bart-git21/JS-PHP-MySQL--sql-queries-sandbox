@@ -20,7 +20,7 @@ Deployment: GitHub.
 - The selected user is stored in localStorage. It is displayed when you navigate between pages. 
 - Intro page show all user queries.
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/intro.jpg)
-- Queries page show queries for logged user
-![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/select.jpg)
+- Queries page show queries for logged user. Selection of another user will display the queries for that user.
+![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/query.jpg)
 - User can modify the query or create the new one.
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-sandbox/blob/main/edit.jpg)
