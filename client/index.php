@@ -40,7 +40,7 @@
         $(document).ready(function () {
             $("#usersQueries").on("click", function () {
                 $.ajax({
-                    url: "../server/users.php",
+                    url: "../server/queries.php",
                     method: "GET",
                 })
                     .done(response => {
