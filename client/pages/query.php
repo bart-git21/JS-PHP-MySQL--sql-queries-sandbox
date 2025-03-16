@@ -128,7 +128,7 @@
                     id: +queriesSelect.store.id,
                     name: $("#modalQueryName").val(),
                     query: $("#modalQueryText").val(),
-                    userID: localStorage.getItem('userId')
+                    userId: localStorage.getItem('userId')
                 };
                 $.ajax({
                     url: "/api/query/",
