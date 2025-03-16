@@ -4,7 +4,6 @@
 ```
 Application for testing the sql queries.
 ```
-
 # Technologies Used
 Backend: PHP, PDO, MySQL.
 Frontentd: Javascript, jQuery 3+, Bootstrap 4.3.
@@ -24,3 +23,53 @@ Deployment: GitHub.
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/query.jpg)
 - User can modify the query or create the new one.
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-sandbox/blob/main/edit.jpg)
+
+### Base api URL
+localhost/api/index.php
+
+# Endpoints
+
+## GET /login
+Read all users. Access simple log-in process. It is used for creating list of users in the login page.
+
+## POST /login
+Log-in. Create session and store user in localStorage.
+
+## GET /query
+Read all queries for specific logged user. Admin read all queries from all users.
+
+## GET /query?id
+Read a query with a specific id.
+
+## POST /query
+Create new query.
+
+## PUT /query?id
+Update a query with a specific id.
+### Client request example
+* **Headers**:
++ 'Content-Type': 'application/json'
+* **Body**:
+```
+{
+    "id": "3",
+    "name": "get Earth data",
+    "query": "SELECT * FROM test_data WHERE id = 3",
+    "userId": "3"
+}
+```
+### API response example
+* **Status code**: 200
+* **Headers**:
++ 'Content-Type': 'application/json'
+* **Body**:
+```
+{
+    "success": "query successfully updated"
+}
+```
+### Error Handling
+- 400 Bad Request: invalid request data or format
+- 401 Unauthorized: authentication failed or missing
+- 404 Not Found: query not found or does not exist
+- 500 Internal Server Error: server-side error or exception
