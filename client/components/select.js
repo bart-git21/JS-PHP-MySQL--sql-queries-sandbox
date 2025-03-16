@@ -40,9 +40,7 @@ class selectView {
       const id = event.target.value;
       $.ajax({
         url: `/api/query/?id=${id}`,
-        method: "POST",
-        data: JSON.stringify({ id }),
-        headers: { contentType: "application/json" },
+        method: "GET",
       })
         .done((response) => {
           // interface Response {
