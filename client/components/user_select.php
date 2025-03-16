@@ -30,6 +30,12 @@
 <script>
     class UserSelectModel {
         constructor(list) {
+            // interface List {
+            //     id: number;
+            //     login: string;
+            //     password: string;
+            //     role: string;
+            // }
             this.list = list;
         }
     }
