@@ -5,6 +5,7 @@ $requestMethod = $_SERVER["REQUEST_METHOD"];
 
 switch ($requestMethod) {
     case "GET":
+        // read all queries from the database, ordered by user login
         session_start();
         $userId = $_SESSION['userId'];
         if ($userId === "1") {
@@ -27,6 +28,7 @@ switch ($requestMethod) {
         break;
     case "POST":
         if (isset($_GET["id"])) {
+            // read the query with a specific id
             $data = json_decode(file_get_contents('php://input'));
             $id = $data->id;
             $stmt = $conn->prepare("SELECT * FROM queries WHERE id = :id");
@@ -45,6 +47,7 @@ switch ($requestMethod) {
                 "queryResult" => $queryResult
             ]);
         } else {
+            // create a new query
             $data = json_decode(file_get_contents('php://input'));
             $stmt = $conn->prepare("INSERT INTO queries (name, query, user_id) VALUES (:name, :query, :userID)");
             $stmt->bindParam(":name", $data->name);
@@ -58,6 +61,7 @@ switch ($requestMethod) {
         }
         break;
     case "PUT":
+        // update a query
         $json = file_get_contents("php://input");
         $data = json_decode($json, true);
         $stmt = $conn->prepare("UPDATE queries SET name = :name, query = :query WHERE id = :id");

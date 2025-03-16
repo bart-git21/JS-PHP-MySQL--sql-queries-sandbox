@@ -4,6 +4,7 @@ $requestMethod = $_SERVER["REQUEST_METHOD"];
 
 switch ($requestMethod) {
     case "GET":
+        // read all users
         $stmt = $conn->prepare("SELECT * FROM users");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -11,6 +12,7 @@ switch ($requestMethod) {
         echo json_encode($result);
         break;
     case "POST":
+        // log in. read a user with a specific id
         session_start();
         $json = file_get_contents("php://input");
         $json && $userId = json_decode($json, true)['userId'];
