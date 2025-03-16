@@ -43,12 +43,35 @@ Read a query with a specific id.
 
 ## POST /query
 Create new query.
+### Client request example
+* **Headers**: 'Content-Type': 'application/json'
+* **Body**:
+```
+{
+    "name": "New query",
+    "query": "SELECT * FROM test_data WHERE id > 3 AND id < 5",
+    "userId": "2"
+}
+```
+### API response example
+* **Status code**: 200
+* **Headers**: 'Content-Type': 'application/json'
+* **Body**:
+```
+{
+    "newQueryId": 4
+}
+```
+### Error Handling
+- 400 Bad Request: invalid request data or format
+- 401 Unauthorized: authentication failed or missing
+- 404 Not Found: query not found or does not exist
+- 500 Internal Server Error: server-side error or exception
 
 ## PUT /query?id
 Update a query with a specific id.
 ### Client request example
-* **Headers**:
-+ 'Content-Type': 'application/json'
+* **Headers**: 'Content-Type': 'application/json'
 * **Body**:
 ```
 {
@@ -60,8 +83,7 @@ Update a query with a specific id.
 ```
 ### API response example
 * **Status code**: 200
-* **Headers**:
-+ 'Content-Type': 'application/json'
+* **Headers**: 'Content-Type': 'application/json'
 * **Body**:
 ```
 {
