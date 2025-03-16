@@ -31,7 +31,7 @@ class selectView {
     $(this.$selector).on("change", function (event) {
       const id = event.target.value;
       $.ajax({
-        url: `../../server/queries.php?id=${id}`,
+        url: `/api/query/?id=${id}`,
         method: "POST",
         data: JSON.stringify({ id }),
         headers: { contentType: "application/json" },
