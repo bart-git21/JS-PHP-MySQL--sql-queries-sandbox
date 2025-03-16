@@ -16,7 +16,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <select class="custom-select" id="userLogin">
+                <select class="custom-select" id="userLoginSelect">
                     <option selected disabled value="-1">Пользователь</option>
                 </select>
                 <div class="border mb-2">
@@ -79,7 +79,7 @@
         })
 
         // changing the select is changing the user
-        $("#userLogin").on("change", function () {
+        $("#loginSelect").on("change", function () {
             $.ajax({
                 url: "/server/login/",
                 method: "POST",
