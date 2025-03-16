@@ -1,6 +1,6 @@
 <div id="user" class="mr-2"></div>
 <!-- Button trigger modal -->
-<div id="login" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#usersModal">
+<div id="loginBtn" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#usersModal">
     Sign in
 </div>
 
@@ -59,7 +59,7 @@
         $("#user").text(user);
 
         // create select option
-        $("#login").on("click", function () {
+        $("#loginBtn").on("click", function () {
             $.ajax({
                 url: "/server/login/",
                 method: "GET",
