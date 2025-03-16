@@ -19,9 +19,9 @@
                 <select class="custom-select" id="userLogin">
                     <option selected disabled value="-1">Пользователь</option>
                 </select>
-                    <div class="border mb-2">
-                        <input id="userPassword" type="password" title="Название запроса">
-                    </div>
+                <div class="border mb-2">
+                    <input id="userPassword" type="password" title="Название запроса">
+                </div>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
         // create select option
         $("#login").on("click", function () {
             $.ajax({
-                url: "/server/login.php",
+                url: "/server/login/",
                 method: "GET",
             })
                 .done(users => {
@@ -81,7 +81,7 @@
         // changing the select is changing the user
         $("#userLogin").on("change", function () {
             $.ajax({
-                url: "/server/login.php",
+                url: "/server/login/",
                 method: "POST",
                 data: JSON.stringify({ userId: this.value, }),
                 headers: { contentType: "application/json" },
