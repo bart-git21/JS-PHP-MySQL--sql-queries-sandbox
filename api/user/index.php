@@ -15,7 +15,7 @@ switch ($requestMethod) {
         $hashedPassword = password_hash($userPass, PASSWORD_DEFAULT);
         $stmt = $conn->prepare("INSERT INTO users (login, password) VALUES (:login, :password)");
         $stmt->bindParam(":login", $userName);
-        $stmt->bindParam(":password", $userPass);
+        $stmt->bindParam(":password", $hashedPassword);
         $stmt->execute();
 
         $lastInsertedId = $pdo->lastInsertId();
