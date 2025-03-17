@@ -1,7 +1,10 @@
 <div id="user" class="mr-2"></div>
 <!-- Button trigger modal -->
-<div id="loginBtn" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#usersModal">
+<div id="loginBtn" type="button" class="btn btn-info btn-sm mr-2" data-toggle="modal" data-target="#usersModal">
     Sign in
+</div>
+<div id="signOnBtn" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#usersModal">
+    Registration
 </div>
 
 <!-- Modal -->
@@ -70,6 +73,29 @@
     $(document).ready(function () {
         const user = localStorage.getItem('user') || "";
         $("#user").text(user);
+
+        $("#signOnBtn").on("click", function () {
+            $.ajax({
+                url: "/api/user/",
+                method: "POST",
+                data: {
+                    login: $("#userLogin").val(),
+                    password: $("#userPassword").val(),
+                },
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+                .done(user => {
+                    // interface User {
+                    //     id: number,
+                    //     login: string,
+                    // }
+                    localStorage.setItem('user', user.login);
+                    $("#user").text(user.login);
+                    $("#usersModal").modal("hide");
+                })
+        })
 
         // create select option
         $("#loginBtn").on("click", function () {
