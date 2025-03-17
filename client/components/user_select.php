@@ -1,10 +1,10 @@
 <div id="user" class="mr-2"></div>
 <!-- Button trigger modal -->
-<div id="loginBtn" type="button" class="btn btn-info btn-sm mr-2" data-toggle="modal" data-target="#usersModal"
+<div id="modalBtn" type="button" class="btn btn-info btn-sm mr-2" data-toggle="modal" data-target="#usersModal"
     data-title="Sign in">
     Sign in
 </div>
-<div id="signOnBtn" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#usersModal"
+<div type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#usersModal"
     data-title="Registration">
     Registration
 </div>
@@ -34,7 +34,8 @@
                             placeholder="Enter password">
                         <small id="emailHelp" class="form-text text-muted">Enter password.</small>
                     </div>
-                    <button id="submitBtn" class="btn btn-primary" type="submit"></button>
+                    <button id="loginBtn" class="btn btn-primary" type="button">Log in</button>
+                    <button id="registrationBtn" class="btn btn-primary" type="button" style="display:none;">Registration</button>
                 </form>
             </div>
         </div>
@@ -86,16 +87,16 @@
             if (recipient === "Registration") {
                 $("#userLoginSelect").hide();
                 $("#userLoginInput").show();
-            } else {
-                $("#userLoginSelect").show();
-                $("#userLoginInput").hide();
-            }
-            const modal = $(this);
+                $("#loginBtn").hide();
+                $("#registrationBtn").show();
+            } 
+            const modal = $('#usersModal');
             modal.find('.modal-title').text(recipient);
-            modal.find('#submitBtn').text(recipient);
+            modal.find('.btn-primary').text(recipient);
         })
 
-        $("#signOnBtn").on("click", function () {
+        // registration logic
+        $("#registrationBtn").on("click", function () {
             $.ajax({
                 url: "/api/user/",
                 method: "POST",
@@ -113,13 +114,12 @@
                     //     login: string,
                     // }
                     localStorage.setItem('user', user.login);
-                    $("#user").text(user.login);
-                    $("#usersModal").modal("hide");
+                    location.reload();
                 })
         })
 
         // create select option
-        $("#loginBtn").on("click", function () {
+        $("#modalBtn").on("click", function () {
             $.ajax({
                 url: "/api/login/",
                 method: "GET",
@@ -138,17 +138,17 @@
                 .always()
         })
 
-        // changing the select is changing the user
-        $("#loginForm").on("submit", function (event) {
-            event.preventDefault();
+        // log in
+        $("#loginBtn").on("click", function (event) {
+            const data = {
+                id: $("#userLoginSelect").val(),
+                login: $('#userLoginSelect').find('option:selected').text(),
+                password: $("#userPassword").val()
+            }
             $.ajax({
                 url: "/api/login/",
                 method: "POST",
-                data: JSON.stringify({
-                    id: $("#userLoginSelect").val(),
-                    login: $('#userLoginSelect').find('option:selected').text(),
-                    password: $("#userPassword").val(),
-                }),
+                data: JSON.stringify(data),
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -160,8 +160,7 @@
                     // }
                     localStorage.setItem("user", loggedUser.login);
                     localStorage.setItem("userId", loggedUser.userId);
-                    $("#user").text(loggedUser.login);
-                    $("#usersModal").modal('hide');
+                    location.reload();
                 })
                 .fail((xhr, status, err) => { console.error("Error: ", err) })
                 .always();
