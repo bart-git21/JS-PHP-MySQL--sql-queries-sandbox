@@ -14,13 +14,13 @@ switch ($requestMethod) {
     case "POST":
         // log in. read a user with a specific id
         session_start();
-        // interface $json {
+        $json = file_get_contents("php://input");
+        // interface $user {
         //     id: number,
         //     login: string,
         //     password: string,
         // }
-        $json = file_get_contents("php://input");
-        $json && $userId = json_decode($json, true)['userId'];
+        $json && $user = json_decode($json, true);
         $_SESSION['userId'] = $userId;
 
         $stmt = $conn->prepare("SELECT (login) FROM users WHERE id = :id");
