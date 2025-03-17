@@ -14,6 +14,11 @@ switch ($requestMethod) {
     case "POST":
         // log in. read a user with a specific id
         session_start();
+        // interface $json {
+        //     id: number,
+        //     login: string,
+        //     password: string,
+        // }
         $json = file_get_contents("php://input");
         $json && $userId = json_decode($json, true)['userId'];
         $_SESSION['userId'] = $userId;
