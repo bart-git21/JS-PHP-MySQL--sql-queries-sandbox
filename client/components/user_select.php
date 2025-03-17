@@ -24,10 +24,9 @@
                 <form id="loginForm">
                     <div id="userLogin" class="form-group">
                         <label for="userLoginSelect">Login:</label>
-                        <select class="custom-select" id="userLoginSelect">
-                            <option selected disabled value="-1">Пользователь</option>
-                        </select>
-                        <input id="userLoginInput" class="form-control" style="display:none;" type="text" placeholder="Enter the login">
+                        <select class="custom-select" id="userLoginSelect"></select>
+                        <input id="userLoginInput" class="form-control" style="display:none;" type="text"
+                            placeholder="Enter the login">
                     </div>
                     <div class="form-group">
                         <label for="userPassword">Password:</label>
@@ -59,6 +58,8 @@
             this.$selector = selector;
         }
         createOptions(list) {
+            $(this.$selector).empty();
+            $(this.$selector).append(`<option selected disabled value="-1">Пользователь</option>`);
             list.forEach(e => this.addOption(e));
             $(this.$selector).val("-1");
         }
@@ -96,7 +97,7 @@
 
         $("#signOnBtn").on("click", function () {
             $.ajax({
-                url: "/projects/php/php _ sql queries store/api/user/",
+                url: "/api/user/",
                 method: "POST",
                 data: {
                     login: $("#userLogin").val(),
@@ -120,7 +121,7 @@
         // create select option
         $("#loginBtn").on("click", function () {
             $.ajax({
-                url: "/projects/php/php _ sql queries store/api/login/",
+                url: "/api/login/",
                 method: "GET",
             })
                 .done(users => {
@@ -141,7 +142,7 @@
         $("#loginForm").on("submit", function (event) {
             event.preventDefault();
             $.ajax({
-                url: "/projects/php/php _ sql queries store/api/login/",
+                url: "/api/login/",
                 method: "POST",
                 data: JSON.stringify({
                     id: $("#userLoginSelect").val(),
