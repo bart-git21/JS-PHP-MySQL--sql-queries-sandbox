@@ -10,13 +10,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="usersModalLabel">Choose the user</h5>
+                <h5 class="modal-title" id="usersModalLabel">Sign in</h5>
                 <button type="button" class="close btn-sm" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="loginForm">
                     <label for="userLoginSelect">Login:</label>
                     <select class="custom-select" id="userLoginSelect">
                         <option selected disabled value="-1">Пользователь</option>
@@ -27,7 +27,7 @@
                             placeholder="Enter password">
                         <small id="emailHelp" class="form-text text-muted">Enter password.</small>
                     </div>
-                    <input class="btn btn-primary" type="submit" value="Sign in">
+                    <button id="submitBtn" class="btn btn-primary" type="submit">Sign in</button>
                 </form>
             </div>
         </div>
@@ -74,7 +74,7 @@
         // create select option
         $("#loginBtn").on("click", function () {
             $.ajax({
-                url: "/projects/php/php _ sql queries store/api/login/",
+                url: "/api/login/",
                 method: "GET",
             })
                 .done(users => {
@@ -92,14 +92,19 @@
         })
 
         // changing the select is changing the user
-        $("#userLoginSelect").on("change", function () {
+        $("#loginForm").on("submit", function (event) {
+            event.preventDefault();
             $.ajax({
-                url: "/projects/php/php _ sql queries store/api/login/",
+                url: "/api/login/",
                 method: "POST",
                 data: JSON.stringify({
-                    userId: this.value,
+                    id: $("#userLoginSelect").val(),
+                    login: $('#userLoginSelect').find('option:selected').text(),
+                    password: $("#userPassword").val(),
                 }),
-                headers: { contentType: "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                },
             })
                 .done(loggedUser => {
                     // interface LoggedUser {
@@ -108,10 +113,12 @@
                     // }
                     localStorage.setItem("user", loggedUser.login);
                     localStorage.setItem("userId", loggedUser.userId);
-                    location.reload();
+                    $("#user").text(loggedUser.login);
+                    $("#usersModal").modal('hide');
                 })
                 .fail((xhr, status, err) => { console.error("Error: ", err) })
-                .always()
+                .always();
+            return false;
         })
     })
 </script>
