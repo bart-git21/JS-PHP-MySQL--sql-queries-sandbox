@@ -29,19 +29,78 @@ localhost/api/index.php
 
 # Endpoints
 
-## GET /login
+## GET /login/
 Read all users. Access simple log-in process. It is used for creating list of users in the login page.
 
-## POST /login
+## POST /login/
 Log-in. Create session and store user in localStorage.
 
-## GET /query
+## GET /query/
 Read all queries for specific logged user. Admin read all queries from all users.
+### Client request example
+*User log-in as user with id = 2*
+### api response example
+* **Status code**: 200
+* **Headers**: 'Content-Type': 'application/json'
+* **Body**:
+```
+[
+    {
+        id: 1,
+        login: "Item1",
+        name: "get all planets",
+        query: "SELECT * FROM test_data",
+        user_id: 2,
+    },
+    {
+        id: 3,
+        login: "Item1",
+        name: "Get visited planets",
+        query: "SELECT * FROM test_data WHERE first_visited_year IS NOT NULL",
+        user_id: 2,
+    }
+]
+```
+### Error Handling
+- 400 Bad Request: invalid request data or format
+- 401 Unauthorized: authentication failed or missing
+- 404 Not Found: query not found or does not exist
+- 500 Internal Server Error: server-side error or exception
 
-## GET /query?id
+## GET /query/?id
 Read a query with a specific id.
+### Client request example
+*User select query with id = 5*
+### api response example
+* **Status code**: 200
+* **Headers**: 'Content-Type': 'application/json'
+* **Body**:
+```
+{
+    query: {
+        id: 5,
+        name: "get Mars data",
+        query: "SELECT * FROM test_data WHERE id = 4",
+        user_id: 3,
+    };
+    queryResult: [
+        {
+            diameter_km: 6792,
+            distance_from_sun_million_km: 227.9,
+            first_visited_year: 1965,
+            id: 4,
+            name: "Mars",
+        }
+    ];
+}
+```
+### Error Handling
+- 400 Bad Request: invalid request data or format
+- 401 Unauthorized: authentication failed or missing
+- 404 Not Found: query not found or does not exist
+- 500 Internal Server Error: server-side error or exception
 
-## POST /query
+## POST /query/
 Create new query.
 ### Client request example
 * **Headers**: 'Content-Type': 'application/json'
@@ -53,7 +112,7 @@ Create new query.
     "userId": "2"
 }
 ```
-### API response example
+### api response example
 * **Status code**: 200
 * **Headers**: 'Content-Type': 'application/json'
 * **Body**:
@@ -65,10 +124,9 @@ Create new query.
 ### Error Handling
 - 400 Bad Request: invalid request data or format
 - 401 Unauthorized: authentication failed or missing
-- 404 Not Found: query not found or does not exist
 - 500 Internal Server Error: server-side error or exception
 
-## PUT /query?id
+## PUT /query/?id
 Update a query with a specific id.
 ### Client request example
 * **Headers**: 'Content-Type': 'application/json'
@@ -81,7 +139,7 @@ Update a query with a specific id.
     "userId": "3"
 }
 ```
-### API response example
+### api response example
 * **Status code**: 200
 * **Headers**: 'Content-Type': 'application/json'
 * **Body**:
