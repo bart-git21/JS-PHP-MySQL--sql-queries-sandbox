@@ -2,13 +2,13 @@ CREATE DATABASE IF NOT EXISTS sql_queries;
 USE sql_queries;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    login TEXT NOT NULL,
-    password TEXT NOT NULL,
+    login TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL UNIQUE,
     role TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS queries (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name TEXT NOT NULL,
+    name TEXT NOT NULL UNIQUE,
     query TEXT NOT NULL,
     user_id INT NOT NULL
 );
