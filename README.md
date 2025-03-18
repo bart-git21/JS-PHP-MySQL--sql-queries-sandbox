@@ -35,6 +35,9 @@ Read all users. Access simple log-in process. It is used for creating list of us
 ## POST /login/
 Log-in. Create session and store user in localStorage.
 
+## POST /user/
+Registration. Create new user.
+
 ## GET /query/
 Read all queries for specific logged user. Admin read all queries from all users.
 ### Client request example
