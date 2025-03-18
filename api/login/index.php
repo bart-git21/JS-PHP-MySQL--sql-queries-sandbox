@@ -16,7 +16,6 @@ switch ($requestMethod) {
         session_start();
         $json = file_get_contents("php://input");
         // interface $user {
-        //     id: number,
         //     login: string,
         //     password: string,
         // }
