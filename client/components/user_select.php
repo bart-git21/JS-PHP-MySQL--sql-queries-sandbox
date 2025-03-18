@@ -4,7 +4,7 @@
     data-title="Sign in">
     Sign in
 </div>
-<div id="logoutBtn" type="button" class="btn btn-info btn-sm mr-2">
+<div id="logoutBtn" type="button" class="btn btn-info btn-sm mr-2" style="display: none;">
     Sign out
 </div>
 <div type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#usersModal"
