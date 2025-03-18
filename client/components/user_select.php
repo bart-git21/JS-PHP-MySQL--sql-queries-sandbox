@@ -68,11 +68,18 @@
         addOption({ id, login }) {
             $(this.$selector).append(`<option value="${id}">${login}</option>`);
         }
+        startOnchangeListener() {
+            $(this.$selector).on("change", function () {
+                const value = $(this).find("option:selected").text();
+                $("#userLoginInput").val(value);
+            })
+        }
     }
     class UserSelectController {
         constructor(model, view) {
             this.model = model;
             this.view = view;
+            this.view.startOnchangeListener();
         }
         create() {
             this.view.createOptions(this.model.list);
@@ -147,8 +154,7 @@
         // log in
         $("#modalLoginBtn").on("click", function (event) {
             const data = {
-                id: $("#userLoginSelect").val(),
-                login: $('#userLoginSelect').find('option:selected').text(),
+                login: $('#userLoginInput').val(),
                 password: $("#userPassword").val()
             }
             $.ajax({
