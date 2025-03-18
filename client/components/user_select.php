@@ -14,7 +14,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="usersModalLabel"></h5>
+                <h5 class="modal-title" id="usersModalLabel">Log in</h5>
                 <button type="button" class="close btn-sm" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -23,19 +23,22 @@
                 <form id="loginForm">
                     <div id="userLogin" class="form-group">
                         <label for="userLoginSelect">Login:</label>
-                        <select class="custom-select" id="userLoginSelect"></select>
-                        <input id="userLoginInput" class="form-control" style="display:none;" type="text"
+                        <select class="custom-select mb-3" id="userLoginSelect"></select>
+                        <input id="userLoginInput" class="form-control" type="text"
                             placeholder="Enter the login">
                     </div>
                     <div class="form-group">
                         <label for="userPassword">Password:</label>
                         <input type="password" class="form-control" id="userPassword" aria-describedby="emailHelp"
                             placeholder="Enter password">
-                        <small id="emailHelp" class="form-text text-muted">Enter password.</small>
                     </div>
-                    <button id="loginBtn" class="btn btn-primary" type="button">Log in</button>
-                    <button id="registrationBtn" class="btn btn-primary" type="button" style="display:none;">Registration</button>
                 </form>
+            </div>
+            <div class="modal-footer">
+                <button id="modalLoginBtn" class="btn btn-primary btn-sm mr-2" type="button">Log in</button>
+                <small>New user?</small>
+                <button id="modalRegistrationBtn" class="btn btn-outline-primary btn-sm"
+                    type="button">Registration</button>
             </div>
         </div>
     </div>
