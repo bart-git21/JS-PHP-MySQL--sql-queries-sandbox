@@ -10,8 +10,8 @@ switch ($requestMethod) {
         //     password: string,
         // }
         $json && $user = json_decode($json, true);
-        $userName = $user["login"];
-        $userPass = $user["password"];
+        $userName = strip_tags($user["login"]);
+        $userPass = strip_tags($user["password"]);
         $hashedPassword = password_hash($userPass, PASSWORD_DEFAULT);
         $stmt = $conn->prepare("INSERT INTO users (login, password) VALUES (:login, :password)");
         $stmt->bindParam(":login", $userName);
