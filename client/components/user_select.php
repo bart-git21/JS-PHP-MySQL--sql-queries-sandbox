@@ -31,6 +31,9 @@
                         <input type="password" class="form-control" id="userPassword" aria-describedby="emailHelp"
                             placeholder="Enter password">
                     </div>
+                    <div class="form-group">
+                        <p><small id="modalError"></small></p>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -94,6 +97,12 @@
                 $("#user").text(localStorage.getItem('user') || "");
             }
         })();
+
+        $('#usersModal').on('show.bs.modal', function (e) {
+            $("#userLoginInput").val("");
+            $("#userPassword").val("");
+            $("#modalError").text("");
+        })
 
         // registration logic
         $("#modalRegistrationBtn").on("click", function () {
@@ -174,7 +183,11 @@
                     localStorage.setItem("userId", loggedUser.userId);
                     location.reload();
                 })
-                .fail((xhr, status, err) => { console.error("Error: ", err) })
+                .fail((xhr, status, err) => {
+                    if (xhr.status === 401) {
+                        $("#modalError").text("Invalid login or password");
+                    }
+                })
                 .always();
             return false;
         })
