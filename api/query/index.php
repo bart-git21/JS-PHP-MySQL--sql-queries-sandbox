@@ -66,8 +66,8 @@ switch ($requestMethod) {
             // update a query with a specific id
             $json = file_get_contents("php://input");
             $data = json_decode($json, true);
-            $name = strip_tags($data->name);
-            $query = strip_tags($data->query);
+            $name = strip_tags($data["name"]);
+            $query = strip_tags($data["query"]);
     
             $stmt = $conn->prepare("UPDATE queries SET name = :name, query = :query WHERE id = :id");
             $stmt->bindParam(":id", $data['id']);
