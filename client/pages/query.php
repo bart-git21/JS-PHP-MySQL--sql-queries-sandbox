@@ -66,7 +66,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Редактирование</h5>
-                    <button type="button" class="close btn-sm" id="closeModalBtn" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close btn-sm" id="closeModalBtn" data-dismiss="modal"
+                        aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -91,6 +92,14 @@
         import { selectModel, selectView, selectController } from "./../components/select.js";
 
         $(document).ready(function () {
+            (function () {
+                const user = localStorage.getItem("user");
+                if (!user) {
+                    $("#homeBtn").click();
+                    location.href = "/client/index.php";
+                }
+            })();
+
             let queriesSelect = {};
             $.ajax({
                 url: "/api/query/",
@@ -110,10 +119,6 @@
 
             // Bootstrap modal usage
             $('#myModal').on('shown.bs.modal', function (e) {
-                // if (!Object.keys(queriesSelect.store).length) {
-                //     $('#myModal').modal('hide');
-                //     return;
-                // }
                 const selectedOption = $('#queriesSelect').find(`option[value="${queriesSelect.store.id}"]`);
                 $("#modalQueryName").val(selectedOption.text());
                 $("#modalQueryText").val(queriesSelect.store.queryText);
