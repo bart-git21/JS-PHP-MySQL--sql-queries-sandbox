@@ -89,7 +89,7 @@
         })();
 
         // registration logic
-        $("#registrationBtn").on("click", function () {
+        $("#modalRegistrationBtn").on("click", function () {
             $.ajax({
                 url: "/api/user/",
                 method: "POST",
@@ -145,7 +145,7 @@
         })
 
         // log in
-        $("#loginBtn").on("click", function (event) {
+        $("#modalLoginBtn").on("click", function (event) {
             const data = {
                 id: $("#userLoginSelect").val(),
                 login: $('#userLoginSelect').find('option:selected').text(),
