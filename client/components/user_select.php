@@ -24,8 +24,7 @@
                     <div id="userLogin" class="form-group">
                         <label for="userLoginSelect">Login:</label>
                         <select class="custom-select mb-3" id="userLoginSelect"></select>
-                        <input id="userLoginInput" class="form-control" type="text"
-                            placeholder="Enter the login">
+                        <input id="userLoginInput" class="form-control" type="text" placeholder="Enter the login">
                     </div>
                     <div class="form-group">
                         <label for="userPassword">Password:</label>
@@ -80,22 +79,14 @@
         }
     }
     $(document).ready(function () {
-        const user = localStorage.getItem('user') || "";
-        $("#user").text(user);
-
-        $('#usersModal').on('show.bs.modal', function (event) {
-            const button = $(event.relatedTarget); // Button that triggered the modal
-            const recipient = button.data('title'); // Extract info from data-* attributes
-            if (recipient === "Registration") {
-                $("#userLoginSelect").hide();
-                $("#userLoginInput").show();
-                $("#loginBtn").hide();
-                $("#registrationBtn").show();
-            } 
-            const modal = $('#usersModal');
-            modal.find('.modal-title').text(recipient);
-            modal.find('.btn-primary').text(recipient);
-        })
+        (function () {
+            const isLogged = localStorage.getItem('user') ? true : false;
+            if (isLogged) {
+                $("#logoutBtn").show();
+                $("#modalBtn").hide();
+                $("#user").text(user);
+            }
+        })();
 
         // registration logic
         $("#registrationBtn").on("click", function () {
