@@ -7,10 +7,6 @@
 <div id="logoutBtn" type="button" class="btn btn-info btn-sm mr-2" style="display: none;">
     Sign out
 </div>
-<div type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#usersModal"
-    data-title="Registration">
-    Registration
-</div>
 
 <!-- Modal -->
 <div class="modal fade" id="usersModal" tabindex="-1" role="dialog" aria-labelledby="usersModalLabel"
