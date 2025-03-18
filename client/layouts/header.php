@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
             <li class="nav-item">
-                <a class="nav-link" href="/client/index.php">Home</a>
+                <a id="homeBtn" class="nav-link" href="/client/index.php">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/client/pages/query.php">Queries
