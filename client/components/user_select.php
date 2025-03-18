@@ -91,7 +91,7 @@
             if (isLogged) {
                 $("#logoutBtn").show();
                 $("#modalBtn").hide();
-                $("#user").text(user);
+                $("#user").text(localStorage.getItem('user') || "");
             }
         })();
 
