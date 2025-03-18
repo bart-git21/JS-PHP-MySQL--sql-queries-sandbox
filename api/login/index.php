@@ -28,9 +28,10 @@ switch ($requestMethod) {
         $stmt->bindParam(":login", $name);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // $hashedPassword = password_hash($result["password"], PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($result["password"], PASSWORD_DEFAULT);
 
-        if (password_verify($pass, $result["password"])) {
+        // if (password_verify($pass, $result["password"])) {
+        if (password_verify($pass, $hashedPassword)) {
             $_SESSION['userId'] = $result["id"];
             unset($result["password"]);
             header("Content-Type: application/json;charset=UTF-8");
@@ -42,7 +43,14 @@ switch ($requestMethod) {
             http_response_code(401);
             echo json_encode(["error" => "Invalid login credentials"]);
         }
-
+        break;
+    case "DELETE":
+        session_start();
+        session_unset();
+        session_destroy();
+        // header("Location: login.html"); // Redirect to login page
+        http_response_code(200);
+        echo json_encode(["success" => "You are successfully logged out"]);
         break;
     default:
         break;

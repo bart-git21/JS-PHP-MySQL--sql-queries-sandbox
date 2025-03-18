@@ -4,6 +4,9 @@
     data-title="Sign in">
     Sign in
 </div>
+<div id="logoutBtn" type="button" class="btn btn-info btn-sm mr-2">
+    Sign out
+</div>
 <div type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#usersModal"
     data-title="Registration">
     Registration
@@ -114,6 +117,19 @@
                     //     login: string,
                     // }
                     localStorage.setItem('user', user.login);
+                    location.reload();
+                })
+        })
+
+        // log out logic
+        $("#logoutBtn").on("click", function () {
+            $.ajax({
+                url: "/api/login/",
+                method: "DELETE",
+            })
+                .done(response => {
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('userId');
                     location.reload();
                 })
         })
