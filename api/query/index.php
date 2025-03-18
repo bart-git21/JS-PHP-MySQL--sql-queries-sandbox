@@ -48,9 +48,12 @@ switch ($requestMethod) {
     case "POST":
         // create a new query
         $data = json_decode(file_get_contents('php://input'));
+        $name = strip_tags($data->name);
+        $query = strip_tags($data->query);
+
         $stmt = $conn->prepare("INSERT INTO queries (name, query, user_id) VALUES (:name, :query, :userID)");
-        $stmt->bindParam(":name", $data->name);
-        $stmt->bindParam(":query", $data->query);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":query", $query);
         $stmt->bindParam(":userID", $data->userID);
         $stmt->execute();
         $lastInsertId = $conn->lastInsertId();
@@ -63,10 +66,13 @@ switch ($requestMethod) {
             // update a query with a specific id
             $json = file_get_contents("php://input");
             $data = json_decode($json, true);
+            $name = strip_tags($data->name);
+            $query = strip_tags($data->query);
+    
             $stmt = $conn->prepare("UPDATE queries SET name = :name, query = :query WHERE id = :id");
             $stmt->bindParam(":id", $data['id']);
-            $stmt->bindParam(":name", $data['name']);
-            $stmt->bindParam(":query", $data['query']);
+            $stmt->bindParam(":name", $name);
+            $stmt->bindParam(":query", $query);
             $stmt->execute();
 
             header("Content-Type: application/json");
