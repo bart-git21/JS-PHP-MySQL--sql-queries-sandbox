@@ -31,6 +31,7 @@ switch ($requestMethod) {
 
         // if (password_verify($pass, $result["password"])) {
         if (password_verify($pass, $hashedPassword)) {
+            session_regenerate_id(true);
             $_SESSION['userId'] = $result["id"];
             unset($result["password"]);
             header("Content-Type: application/json;charset=UTF-8");

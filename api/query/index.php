@@ -25,6 +25,8 @@ switch ($requestMethod) {
         } else {
             // read all queries from the database, ordered by user login
             session_start();
+            session_regenerate_id(true);
+
             $userId = $_SESSION['userId'];
             if ($userId === 1) {
                 $stmt = $conn->prepare('SELECT q.*, users.login FROM queries AS q LEFT JOIN users ON q.user_id = users.id ORDER BY users.login ASC');
