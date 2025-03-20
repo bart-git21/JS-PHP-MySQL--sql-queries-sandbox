@@ -20,8 +20,8 @@ switch ($requestMethod) {
         //     password: string,
         // }
         $json && $user = json_decode($json, true);
-        $name = $user['login'];
-        $pass = $user['password'];
+        $name = strip_tags($user['login']);
+        $pass = strip_tags($user['password']);
 
         $stmt = $conn->prepare("SELECT * FROM users WHERE login = :login");
         $stmt->bindParam(":login", $name);
