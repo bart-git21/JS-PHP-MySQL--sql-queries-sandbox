@@ -108,15 +108,24 @@
         $("#modalRegistrationBtn").on("click", function () {
             const login = $("#userLoginInput").val();
             const password = $("#userPassword").val();
+
+            // Check for empty login or password
             if (!login || login.trim() === "" || !password || password.trim() === "") {
                 $("#modalError").text("Login or password cannot be empty");
                 return;
             }
+
+            // Check for potentially malicious characters in login
+            const invalidCharsRegex = /[<>(){}[\]'";]/;
+            if (invalidCharsRegex.test(login)) {
+                $("#modalError").text("Login contains invalid characters");
+                return;
+            }
+
             const data = {
                 login,
                 password,
             };
-            console.log(data);
             $.ajax({
                 url: "/api/user/",
                 method: "POST",
