@@ -17,7 +17,7 @@ Deployment: GitHub.
 - Header has log-in select
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/login.jpg)
 - The selected user is stored in localStorage. It is displayed when you navigate between pages. 
-- Intro page show all user queries.
+- Intro page show all logged user queries.
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/intro.jpg)
 - Queries page show queries for logged user. Selection of another user will display the queries for that user.
 ![screen](https://github.com/bart-git21/JS-PHP-MySQL--sql-queries-testing/blob/main/query.jpg)
