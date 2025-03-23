@@ -106,13 +106,21 @@
 
         // registration logic
         $("#modalRegistrationBtn").on("click", function () {
+            const login = $("#userLoginInput").val();
+            const password = $("#userPassword").val();
+            if (!login || login.trim() === "" || !password || password.trim() === "") {
+                $("#modalError").text("Login or password cannot be empty");
+                return;
+            }
+            const data = {
+                login,
+                password,
+            };
+            console.log(data);
             $.ajax({
                 url: "/api/user/",
                 method: "POST",
-                data: {
-                    login: $("#userLogin").val(),
-                    password: $("#userPassword").val(),
-                },
+                data: JSON.stringify(data),
                 headers: {
                     "Content-Type": "application/json",
                 }
@@ -125,6 +133,12 @@
                     localStorage.setItem('user', user.login);
                     location.reload();
                 })
+                .fail((xhr, status, err) => {
+                    if (xhr.status === 400) {
+                        $("#modalError").text("Invalid login or password");
+                    }
+                })
+                .always();
         })
 
         // log out logic
