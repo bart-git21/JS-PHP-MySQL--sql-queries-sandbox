@@ -31,12 +31,82 @@ localhost/api/index.php
 
 ## GET /login/
 Read all users. Access simple log-in process. It is used for creating list of users in the login page.
+### Client request example
+*User log-in as user with id = 2*
+### api response example
+* **Status code**: 200
+* **Headers**: 'Content-Type': 'application/json'
+* **Body**:
+```
+[
+    {
+        id: 1,
+        login: "admin",
+        password: "admin",
+        role: "admin",
+    },
+    {
+        id: 2,
+        login: "Item1",
+        password: "123",
+        role: "user",
+    },
+    {
+        id: 3,
+        login: "Item2",
+        password: "456",
+        role: "user",
+    },
+]
+```
 
 ## POST /login/
 Log-in. Create session and store user in localStorage.
+### Client request example
+* **Headers**: 'Content-Type': 'application/json'
+* **Body**:
+```
+{
+    "login": "Item1",
+    "password": "123"
+}
+```
+### api response example
+* **Status code**: 200
+* **Headers**: 'Content-Type': 'application/json'
+* **Body**:
+```
+{
+    "login": "Item1",
+    "id": 2
+}
+```
+### Error Handling
+- 401 Unauthorized: authentication failed or missing
 
 ## POST /user/
 Registration. Create new user.
+### Client request example
+* **Headers**: 'Content-Type': 'application/json'
+* **Body**:
+```
+{
+    "login": "New user",
+    "password": "999"
+}
+```
+### api response example
+* **Status code**: 201
+* **Headers**: 'Content-Type': 'application/json'
+* **Body**:
+```
+{
+    "id": 4,
+    "login": "New user"
+}
+```
+### Error Handling
+- 401 Unauthorized: authentication failed or missing
 
 ## GET /query/
 Read all queries for specific logged user. Admin read all queries from all users.
